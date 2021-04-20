@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "462449117260",
+    "project_id": "virtual-destination-a02d1",
+    "storage_bucket": "virtual-destination-a02d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462449117260:android:5fa9cc42a68853fefa4ce9",
+        "android_client_info": {
+          "package_name": "com.ayush.shellcode_internship"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462449117260-c6n8kuqnfe7mqb7doctah5neqp1vf7nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt_7L4uMKC8LEezPISfdoTFpmTvjSUlEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462449117260-c6n8kuqnfe7mqb7doctah5neqp1vf7nf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "462449117260-nkc8tfbm3c39k2l86c5mj2508evvi7hv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ayush.shellcodeInternship"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462449117260:android:5d87bdaadd8877e4fa4ce9",
+        "android_client_info": {
+          "package_name": "com.ayush.virtual_destination"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "462449117260-c6n8kuqnfe7mqb7doctah5neqp1vf7nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt_7L4uMKC8LEezPISfdoTFpmTvjSUlEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "462449117260-c6n8kuqnfe7mqb7doctah5neqp1vf7nf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "462449117260-nkc8tfbm3c39k2l86c5mj2508evvi7hv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ayush.shellcodeInternship"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
