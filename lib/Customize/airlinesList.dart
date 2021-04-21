@@ -27,7 +27,7 @@ class _airlinesListState extends State<airlinesList> {
           width: size.width,
           height: size.height,
           color: Colors.transparent,
-          margin: EdgeInsets.only(bottom: size.height*0.09),
+          margin: EdgeInsets.only(bottom: size.height*0.01),
           child: FutureBuilder(
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -50,7 +50,7 @@ class _airlinesListState extends State<airlinesList> {
           ),
         ),
         Positioned(
-          bottom: size.height*0.15,
+          bottom: size.height*0.09,
           right: 10,
           child: Container(
             child: FloatingActionButton(
@@ -103,7 +103,7 @@ class _airlinesListState extends State<airlinesList> {
       padding:
       EdgeInsets.symmetric(horizontal: 15, vertical: size.height * 0.02),
       decoration: BoxDecoration(
-          border: Border.fromBorderSide(BorderSide(color: Color(0xFFB666D2))),
+          border: Border.fromBorderSide(BorderSide(color: Colors.black54)),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,7 +114,7 @@ class _airlinesListState extends State<airlinesList> {
             style: TextStyle(
                 fontSize: size.height * 0.02,
                 fontWeight: FontWeight.w500,
-                color: kPrimaryColor),
+                color: Colors.black87),
           ),
           IconButton(
               icon: Icon(

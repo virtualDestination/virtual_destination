@@ -8,12 +8,7 @@ import 'package:virtual_destination/home%20page/settings.dart';
 import '../../colors.dart';
 import '../searchFlights.dart';
 
-List<String> cars = [
-  "EuropCar","Alamo","Dollar",
-  "Hertz","Budget","Enterprise",
-  "Sixt","National","Thrifty",
-  "Avis"
-];
+
 class forceCars extends StatefulWidget {
   List Cities,cars;
   forceCars({this.Cities,this.cars});
@@ -22,7 +17,7 @@ class forceCars extends StatefulWidget {
 }
 
 class _forceCarsState extends State<forceCars> {
-  String fromCity = "A Coruña", toCity = "A Coruña", car = "KiaeSoul";
+  String fromCity, toCity, car;
   _startDatePicker() async {
     DatePicker.showDateTimePicker(context,
         showTitleActions: true,
@@ -68,7 +63,7 @@ class _forceCarsState extends State<forceCars> {
               style: TextStyle(
                   fontSize: size.width * 0.06,
                   fontWeight: FontWeight.w800,
-                  color: kPrimaryColor),
+                  color: Colors.black87),
             ),
           ),
           Padding(
@@ -79,22 +74,25 @@ class _forceCarsState extends State<forceCars> {
             ),
           ),
           Container(
-            color: kPrimaryLightColor,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(22)),
+              color: Colors.black26,
+            ),
             padding: EdgeInsets.all(10),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   fromCity = e;
-                  // });
+                  setState(() {
+                    fromCity = forcedFromField;
+                  });
                 },
-                value: (forcedFromField!=null)?forcedFromField:fromCity,
+                value:fromCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
-                  color: kPrimaryLightColor,
+                  color: Colors.black26,
                 ),
                 items: widget.Cities.map<DropdownMenuItem>((e) {
                   return DropdownMenuItem(
@@ -111,19 +109,22 @@ class _forceCarsState extends State<forceCars> {
             ),
           ),
           Container(
-            color: kPrimaryLightColor,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(22)),
+              color: Colors.black26,
+            ),
             padding: EdgeInsets.all(10),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   toCity = e;
-                  // });
+                  setState(() {
+                    toCity = forcedToField;
+                  });
                 },
-                value: (forcedToField!=null)?forcedToField:toCity,
+                value:toCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
                   color: kPrimaryLightColor,
@@ -143,19 +144,23 @@ class _forceCarsState extends State<forceCars> {
                   ),
                 ),
           Container(
-            color: kPrimaryLightColor,
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(22)),
+              color: Colors.black26,
+            ),
             padding: EdgeInsets.all(10),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   car = e;
-                  // });
+                  setState(() {
+                    car = forcedCarField;
+                  });
                 },
-                value: (forcedCarField!=null)?forcedCarField:car,
+                value:car,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
                   color: kPrimaryLightColor,
@@ -182,7 +187,7 @@ class _forceCarsState extends State<forceCars> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.symmetric(vertical: 12),
                           decoration: BoxDecoration(
-                              color: kPrimaryLightColor,
+                              color: Colors.black26,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Center(
@@ -193,7 +198,7 @@ class _forceCarsState extends State<forceCars> {
                                   startDate.toString().substring(
                                       12, startDate.toString().length - 4))),
                         ),
-                        style: TextButton.styleFrom(primary: kPrimaryColor)),
+                        style: TextButton.styleFrom(primary: Colors.black87)),
                   ],
                 ),
               ),
@@ -209,7 +214,7 @@ class _forceCarsState extends State<forceCars> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.symmetric(vertical: 12),
                           decoration: BoxDecoration(
-                              color: kPrimaryLightColor,
+                              color: Colors.black26,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Center(
@@ -219,7 +224,7 @@ class _forceCarsState extends State<forceCars> {
                                       endDate.toString().substring(
                                           12, endDate.toString().length - 4))),
                         ),
-                        style: TextButton.styleFrom(primary: kPrimaryColor)),
+                        style: TextButton.styleFrom(primary: Colors.black87)),
                   ],
                 ),
               ),
@@ -231,7 +236,7 @@ class _forceCarsState extends State<forceCars> {
             width: size.width*0.8,
             height: size.height*0.08,
             decoration: BoxDecoration(
-                color: Color.fromRGBO(61, 23, 88, 1),
+                color: Colors.black87,
                 borderRadius: BorderRadius.all(Radius.circular(35))
             ),
             margin: EdgeInsets.symmetric(horizontal: size.width*0.08),

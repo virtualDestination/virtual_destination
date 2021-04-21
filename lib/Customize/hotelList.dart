@@ -33,7 +33,7 @@ class _hotelsListState extends State<hotelsList> {
               if (snapshot.hasData) {
                 List _cities = snapshot.data['Hotels'];
                 return Container(
-                  margin: EdgeInsets.only(bottom: size.height*0.09),
+                  margin: EdgeInsets.only(bottom: size.height*0.01),
                   child: ListView.separated(
                       itemBuilder: (context, index) {
                         return itemCard(_cities[index], context);
@@ -53,7 +53,7 @@ class _hotelsListState extends State<hotelsList> {
           ),
         ),
         Positioned(
-          bottom: size.height*0.15,
+          bottom: size.height*0.09,
           right: 10,
           child: Container(
             child: FloatingActionButton(
@@ -104,7 +104,7 @@ class _hotelsListState extends State<hotelsList> {
       padding:
       EdgeInsets.symmetric(horizontal: 15, vertical: size.height * 0.02),
       decoration: BoxDecoration(
-          border: Border.fromBorderSide(BorderSide(color: Color(0xFFbc6ff1).withOpacity(0.8))),
+          border: Border.fromBorderSide(BorderSide(color: Colors.black54)),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,7 +117,7 @@ class _hotelsListState extends State<hotelsList> {
               style: TextStyle(
                   fontSize: size.height * 0.02,
                   fontWeight: FontWeight.w500,
-                  color: kPrimaryColor),
+                  color: Colors.black87),
             ),
           ),
           IconButton(

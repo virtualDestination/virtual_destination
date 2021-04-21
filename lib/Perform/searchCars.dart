@@ -73,7 +73,7 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
                     style: TextStyle(
                         fontSize: size.width * 0.06,
                         fontWeight: FontWeight.w800,
-                        color: kPrimaryColor),
+                        color: Colors.black87),
                   ),
                 ),
                 Padding(
@@ -113,7 +113,7 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 margin: EdgeInsets.symmetric(vertical: 12),
                                 decoration: BoxDecoration(
-                                    color: kPrimaryLightColor,
+                                    color: Colors.black26,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Center(
@@ -125,7 +125,7 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
                                             startDate.toString().length - 4))),
                               ),
                               style:
-                                  TextButton.styleFrom(primary: kPrimaryColor)),
+                                  TextButton.styleFrom(primary: Colors.black87)),
                         ],
                       ),
                     ),
@@ -141,7 +141,7 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 margin: EdgeInsets.symmetric(vertical: 12),
                                 decoration: BoxDecoration(
-                                    color: kPrimaryLightColor,
+                                    color: Colors.black26,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Center(
@@ -153,7 +153,7 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
                                             endDate.toString().length - 4))),
                               ),
                               style:
-                                  TextButton.styleFrom(primary: kPrimaryColor)),
+                                  TextButton.styleFrom(primary: Colors.black87)),
                         ],
                       ),
                     ),
@@ -167,7 +167,7 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
                       width: size.width * 0.8,
                       height: size.height * 0.08,
                       decoration: BoxDecoration(
-                          color: Color.fromRGBO(61, 23, 88, 1),
+                          color: Colors.black87,
                           borderRadius: BorderRadius.all(Radius.circular(35))),
                       margin:
                           EdgeInsets.symmetric(horizontal: size.width * 0.08),

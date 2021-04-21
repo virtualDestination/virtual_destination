@@ -71,7 +71,7 @@ class _srchCarsState extends State<srchCars> {
                   child: Text(
                     "Search",
                     style: TextStyle(
-                        fontSize: size.width * 0.06,fontWeight: FontWeight.w800, color: kPrimaryColor),
+                        fontSize: size.width * 0.06,fontWeight: FontWeight.w800, color: Colors.black87),
                   ),
                 ),
                 Padding(
@@ -111,7 +111,7 @@ class _srchCarsState extends State<srchCars> {
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 margin: EdgeInsets.symmetric(vertical: 12),
                                 decoration: BoxDecoration(
-                                    color: kPrimaryLightColor,
+                                    color: Colors.black26,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Center(
@@ -120,7 +120,7 @@ class _srchCarsState extends State<srchCars> {
                                         .substring(0, 10))),
                               ),
                               style:
-                                  TextButton.styleFrom(primary: kPrimaryColor)),
+                                  TextButton.styleFrom(primary: Colors.black87)),
                         ],
                       ),
                     ),
@@ -136,7 +136,7 @@ class _srchCarsState extends State<srchCars> {
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 margin: EdgeInsets.symmetric(vertical: 12),
                                 decoration: BoxDecoration(
-                                    color: kPrimaryLightColor,
+                                    color: Colors.black26,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Center(
@@ -145,7 +145,7 @@ class _srchCarsState extends State<srchCars> {
                                         .substring(0, 10))),
                               ),
                               style:
-                                  TextButton.styleFrom(primary: kPrimaryColor)),
+                                  TextButton.styleFrom(primary: Colors.black87)),
                         ],
                       ),
                     ),
@@ -158,7 +158,7 @@ class _srchCarsState extends State<srchCars> {
                   width: size.width*0.8,
                   height: size.height*0.08,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(61, 23, 88, 1),
+                    color: Colors.black87,
                     borderRadius: BorderRadius.all(Radius.circular(35))
                   ),
                   margin: EdgeInsets.symmetric(horizontal: size.width*0.08),

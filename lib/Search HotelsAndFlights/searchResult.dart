@@ -53,15 +53,16 @@ class _resultPageState extends State<resultPage> {
       ),
 
 
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top:8.0),
-            child: travelInfoContainer(),
-          ),
-          (isPreloaded)?Container(
-            height: size.height*0.58,
-            child: ListView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top:8.0),
+              child: travelInfoContainer(),
+            ),
+            (isPreloaded)?ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               children: [
                 flightContainer(no: 1,hotelNo: widget.hotelNo,),
                 flightContainer(no: 2,hotelNo: widget.hotelNo,),
@@ -72,59 +73,62 @@ class _resultPageState extends State<resultPage> {
                 flightContainer(no: 7,hotelNo: widget.hotelNo,),
                 flightContainer(no: 8,hotelNo: widget.hotelNo,),
               ],
-            ),
-          ):Container(
-            height: size.height*0.58,
-            child: FutureBuilder(
-                future: storage.ready,
-                builder: (context,snapshot){
-                  if (snapshot.data == null) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-
-                  if (!initialized) {
-                    var items = storage.getItem('createdLists');
-                    print(items);
-
-                    if (items != null) {
-                      list.companies = List<createdComp>.from(
-                        (items as List).map(
-                              (item) => createdComp(
-                              name: item['name'],
-                              price: item['price'],
-                              filePath: item['filePath'],
-                              typeOfTrip: item['trip']
-                          ),
-                        ),
+            ):Text(""),
+            Container(
+              height: size.height*0.58,
+              child: FutureBuilder(
+                  future: storage.ready,
+                  builder: (context,snapshot){
+                    if (snapshot.data == null) {
+                      return Center(
+                        child: CircularProgressIndicator(),
                       );
                     }
-                    initialized = true;
-                  }
-                  if(snapshot.hasData){
-                    return ListView.builder(
-                        itemCount: list.companies.length,
-                        itemBuilder: (context,index){
-                          if(list.companies[index].typeOfTrip=="Airline"){
-                            return flightContainer(price: list.companies[index].price,name: list.companies[index].name,filePath: list.companies[index].filePath,);
-                          }else{
-                            return Text("");
+
+                    if (!initialized) {
+                      var items = storage.getItem('createdLists');
+                      print(items);
+
+                      if (items != null) {
+                        list.companies = List<createdComp>.from(
+                          (items as List).map(
+                                (item) => createdComp(
+                                name: item['name'],
+                                price: item['price'],
+                                filePath: item['filePath'],
+                                typeOfTrip: item['trip']
+                            ),
+                          ),
+                        );
+                      }
+                      initialized = true;
+                    }
+                    if(snapshot.hasData){
+                      return ListView.builder(
+                        shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: list.companies.length,
+                          itemBuilder: (context,index){
+                            if(list.companies[index].typeOfTrip=="Airline"){
+                              return flightContainer(price: list.companies[index].price,name: list.companies[index].name,filePath: list.companies[index].filePath,);
+                            }else{
+                              return Text("");
+                            }
                           }
-                        }
-                    );
-                  }else{
-                    return Center(child: CircularProgressIndicator());
-                  }
-                }),
-          )
-          // Container(
-          //  width: size.width,
-          //  child: ListView.builder(itemBuilder: (context,index){
-          //    return Text("List"); 
-          //  },itemCount: 17,),
-          // )
-        ],
+                      );
+                    }else{
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  }),
+            )
+            // Container(
+            //  width: size.width,
+            //  child: ListView.builder(itemBuilder: (context,index){
+            //    return Text("List");
+            //  },itemCount: 17,),
+            // )
+          ],
+        ),
       ),
     );
   }

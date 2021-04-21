@@ -53,7 +53,7 @@ class _flightContainerState extends State<flightContainer> {
           Container(
             height: size.height*0.2,
             width: size.width,
-            child: (isPreloaded)?Image.asset("assets/images/airlines${widget.no}.jpeg",
+            child: (widget.filePath==null)?Image.asset("assets/images/airlines${widget.no}.jpeg",
             fit: BoxFit.fill,):Image.file(File(widget.filePath),fit: BoxFit.fill,),
           ),
           Row(
@@ -62,14 +62,14 @@ class _flightContainerState extends State<flightContainer> {
            children: [
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("${(isPreloaded)?airlines[widget.no-1]:widget.name}",style: TextStyle(
+               child: Text("${(widget.name==null)?airlines[widget.no-1]:widget.name}",style: TextStyle(
                  fontSize: size.width*0.045,
                  fontWeight: FontWeight.bold
                ),),
              ),
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("$currency ${(isPreloaded)?flightsPrices[widget.no-1]:widget.price}",style: TextStyle(
+               child: Text("$currency ${(widget.price==null)?flightsPrices[widget.no-1]:widget.price}",style: TextStyle(
                  fontSize: size.width*0.035
                ),),
              )
@@ -96,8 +96,8 @@ class _flightContainerState extends State<flightContainer> {
             padding: EdgeInsets.only(left:size.width*0.5),
             child: TextButton(onPressed: (){
               setState(() {
-                selectedAirline = (isPreloaded)?airlines[widget.no-1]:widget.name;
-                selectedFlightPrice = (isPreloaded)?flightsPrices[widget.no-1]:widget.price;
+                selectedAirline = (widget.name==null)?airlines[widget.no-1]:widget.name;
+                selectedFlightPrice = (widget.price==null)?flightsPrices[widget.no-1]:widget.price;
               });
               print(selectedAirline+selectedFlightPrice.toString());
               Navigator.push(context, MaterialPageRoute(builder: (context)=>flight_and_hotels_booking_confirm()));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtual_destination/colors.dart';
 import 'package:virtual_destination/common%20components/rounded_button.dart';
@@ -16,8 +17,8 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   String Email,password;
   void setLogIn(bool value) async{
-    LocalStorage storage = LocalStorage('travel_app');
-    storage.setItem('logIn', value);
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    storage.setBool('logIn', value);
     print("Succesfully Logged In");
   }
   @override

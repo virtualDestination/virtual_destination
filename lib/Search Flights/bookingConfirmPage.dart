@@ -146,7 +146,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${(isPreloaded)?flightsPrices[no-1]:price}",
+                    "$currency ${(price==null)?flightsPrices[no-1]:price}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),
@@ -160,7 +160,7 @@ class bottomSheet extends StatelessWidget {
             child: TextButton(
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
-                  noti.sendNoti("Flight", (isForced)?forcedToField:toField, (isForced)?forcedFlightField:(isPreloaded)?airlines[no-1]:name);
+                  noti.sendNoti("Flight", (isForced)?forcedToField:toField, (isForced)?forcedFlightField:(name==null)?airlines[no-1]:name);
                 },
                 child: Container(
                   width: size.width * 0.32,

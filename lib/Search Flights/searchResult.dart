@@ -48,16 +48,17 @@ class _resultPageState extends State<resultPage> {
       ),
 
 
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top:8.0),
-            child: travelInfoContainer(),
-          ),
-          (isPreloaded)?
-              Container(
-                height: size.height*0.62,
-                child: ListView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top:8.0),
+              child: travelInfoContainer(),
+            ),
+            (isPreloaded)?
+                ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   children: [
                     flightContainer(no: 1,),
                     flightContainer(no: 2,),
@@ -68,10 +69,8 @@ class _resultPageState extends State<resultPage> {
                     flightContainer(no: 7,),
                     flightContainer(no: 8,),
                   ],
-                ),
-              ):Container(
-            height: size.height*0.62,
-            child: FutureBuilder(
+                ):Text(""),
+            FutureBuilder(
                 future: storage.ready,
                 builder: (context,snapshot){
                   if (snapshot.data == null) {
@@ -100,6 +99,8 @@ class _resultPageState extends State<resultPage> {
                   }
                   if(snapshot.hasData){
                     return ListView.builder(
+                      shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         itemCount: list.companies.length,
                         itemBuilder: (context,index){
                           if(list.companies[index].typeOfTrip=="Airline"){
@@ -112,15 +113,15 @@ class _resultPageState extends State<resultPage> {
                   }else{
                     return Center(child: CircularProgressIndicator());
                   }
-                }),
-          )
-          // Container(
-          //  width: size.width,
-          //  child: ListView.builder(itemBuilder: (context,index){
-          //    return Text("List"); 
-          //  },itemCount: 17,),
-          // )
-        ],
+                })
+            // Container(
+            //  width: size.width,
+            //  child: ListView.builder(itemBuilder: (context,index){
+            //    return Text("List");
+            //  },itemCount: 17,),
+            // )
+          ],
+        ),
       ),
     );
   }

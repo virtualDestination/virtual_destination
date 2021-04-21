@@ -92,7 +92,7 @@ class _srchFlightsState extends State<srchFlights> {
                     style: TextStyle(
                         fontSize: size.width * 0.06,
                         fontWeight: FontWeight.w800,
-                        color: kPrimaryColor),
+                        color: Colors.black87),
                   ),
                 ),
                 Padding(
@@ -132,7 +132,7 @@ class _srchFlightsState extends State<srchFlights> {
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 margin: EdgeInsets.symmetric(vertical: 10),
                                 decoration: BoxDecoration(
-                                    color: kPrimaryLightColor,
+                                    color: Colors.black26,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Center(
@@ -141,7 +141,7 @@ class _srchFlightsState extends State<srchFlights> {
                                         .substring(0, 10))),
                               ),
                               style:
-                                  TextButton.styleFrom(primary: kPrimaryColor)),
+                                  TextButton.styleFrom(primary: Colors.black)),
                         ],
                       ),
                     ),
@@ -157,7 +157,7 @@ class _srchFlightsState extends State<srchFlights> {
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                                 margin: EdgeInsets.symmetric(vertical: 10),
                                 decoration: BoxDecoration(
-                                    color: kPrimaryLightColor,
+                                    color: Colors.black26,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20))),
                                 child: Center(
@@ -166,7 +166,7 @@ class _srchFlightsState extends State<srchFlights> {
                                         .substring(0, 10))),
                               ),
                               style:
-                                  TextButton.styleFrom(primary: kPrimaryColor)),
+                                  TextButton.styleFrom(primary: Colors.black87)),
                         ],
                       ),
                     ),
@@ -181,7 +181,7 @@ class _srchFlightsState extends State<srchFlights> {
                       width: size.width * 0.8,
                       height: size.height * 0.08,
                       decoration: BoxDecoration(
-                          color: Color.fromRGBO(61, 23, 88, 1),
+                          color: Colors.black87,
                           borderRadius: BorderRadius.all(Radius.circular(35))),
                       margin:
                           EdgeInsets.symmetric(horizontal: size.width * 0.08),
@@ -330,7 +330,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -342,7 +342,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,
@@ -372,7 +372,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -384,7 +384,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,

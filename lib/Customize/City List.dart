@@ -24,7 +24,7 @@ class _listOfCitiesState extends State<listOfCities> {
           width: size.width,
           height: size.height,
           color: Colors.transparent,
-          padding: EdgeInsets.only(top: 20,bottom: size.height*0.05),
+          padding: EdgeInsets.only(bottom: size.height*0.01),
           child: FutureBuilder(
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -47,7 +47,7 @@ class _listOfCitiesState extends State<listOfCities> {
           ),
         ),
         Positioned(
-          bottom: size.height*0.15,
+          bottom: size.height*0.09,
           right: 10,
           child: Container(
             child: FloatingActionButton(
@@ -98,7 +98,7 @@ class _listOfCitiesState extends State<listOfCities> {
       padding:
           EdgeInsets.symmetric(horizontal: 15, vertical: size.height * 0.02),
       decoration: BoxDecoration(
-          border: Border.fromBorderSide(BorderSide(color: kPrimaryColor)),
+          border: Border.fromBorderSide(BorderSide(color: Colors.black54)),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,7 +109,7 @@ class _listOfCitiesState extends State<listOfCities> {
             style: TextStyle(
                 fontSize: size.height * 0.02,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF8a2be2)),
+                color: Colors.black87),
           ),
           IconButton(
               icon: Icon(
