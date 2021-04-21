@@ -70,7 +70,7 @@ class confirmBooking extends StatelessWidget {
               ),
             ),
           ),
-          firstContainer(no: no,name: name,),
+          firstContainer(no: (isForced)?2:no,name: name,),
           secondContainer(),
           thirdContainer(seats: seats,bags: bags,),
           Padding(
@@ -146,7 +146,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${(price==null)?flightsPrices[no-1]:price}",
+                    "$currency ${(price==null)?((isForced)?499:flightsPrices[no-1]):price}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),

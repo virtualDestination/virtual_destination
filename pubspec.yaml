@@ -41,6 +41,7 @@ dependencies:
   http:
   dio:
   localstorage: ^4.0.0+1
+  firebase_dynamic_links: ^2.0.1
 
 dev_dependencies:
   flutter_test:

@@ -63,7 +63,7 @@ class confirmBooking extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("${(name==null)?hotelsList[no-1]:name}",style: TextStyle(
+            child: Text("${(name==null)?(isForced)?forcedHotelField:hotelsList[no-1]:name}",style: TextStyle(
               color: Colors.black87,
               fontSize: size.width*0.08,
               fontWeight: FontWeight.w700
@@ -166,7 +166,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${(price==null)?hotelPrices[no-1]:price}",
+                    "$currency ${(price==null)?((isForced)?125:hotelPrices[no-1]):price}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),

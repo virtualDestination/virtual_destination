@@ -57,7 +57,8 @@ class _srchCarsState extends State<srchCars> {
           List cities = snapshot.data['Cities'];
           List airlines = snapshot.data['flights'];
           List hotels = snapshot.data['Hotels'];
-          return(isForced)? forceFlightAndHotels(Cities: cities,hotels: hotels,flights: airlines,) : Container(
+          List cars = snapshot.data['Cars'];
+          return(isForced)? forceFlightAndHotels(Cities: cities,hotels: hotels,flights: airlines,cars: cars,) : Container(
             width: size.width,
             height: size.height * 0.6,
             padding: EdgeInsets.symmetric(horizontal: 15),

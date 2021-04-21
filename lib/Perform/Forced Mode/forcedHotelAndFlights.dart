@@ -21,8 +21,8 @@ List<String> airlines = <String>[
   "EasyJet","Lufthansa"
 ];
 class forceFlightAndHotels extends StatefulWidget {
-  List Cities,flights,hotels;
-  forceFlightAndHotels({this.Cities,this.flights,this.hotels});
+  List Cities,flights,hotels,cars;
+  forceFlightAndHotels({this.Cities,this.flights,this.hotels,this.cars});
   @override
   _forceFlightAndHotelsState createState() => _forceFlightAndHotelsState();
 }
@@ -146,6 +146,79 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                 }).toList()),
           ),
 
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left:12.0),
+                child: Text("Select Hotel"),
+              ),
+              Container(
+                          margin: EdgeInsets.all(11),
+                          height: size.height * 0.06,
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              color: Colors.black26,
+                              borderRadius: BorderRadius.all(Radius.circular(20))),
+                          child: DropdownButton(
+                              onChanged: (e) {
+                                setState(() {
+                                  hotels = forcedHotelField;
+                                });
+                              },
+                              value:hotels,
+                              icon: Icon(Icons.arrow_drop_down),
+                              elevation: 20,
+                              style: TextStyle(
+                                color: Colors.black87,
+                              ),
+                              underline: Container(
+                                color: Colors.transparent,
+                              ),
+                              items: widget.hotels
+                                  .map<DropdownMenuItem>(( e) {
+                                return DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e.toString()),
+                                );
+                              }).toList()),
+                        ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(left:12.0),
+            child: Text("Select Car"),
+          ),
+          Container(
+            margin: EdgeInsets.all(11),
+            height: size.height * 0.06,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.black26,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            child: DropdownButton(
+                onChanged: (e) {
+                  setState(() {
+                    car = forcedCarField;
+                  });
+                },
+                value: car,
+                icon: Icon(Icons.arrow_drop_down),
+                elevation: 20,
+                style: TextStyle(
+                  color: Colors.black87,
+                ),
+                underline: Container(
+                  color: Colors.transparent,
+                ),
+                items: widget.cars
+                    .map<DropdownMenuItem>(( e) {
+                  return DropdownMenuItem(
+                    value: e,
+                    child: Text(e.toString()),
+                  );
+                }).toList()),
+          ),
           forcedPeopleCount(
             bags: bags,
             seats: seats,
@@ -203,184 +276,55 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left:12.0),
-                    child: Text("Select Hotel"),
-                  ),
-                  Container(
-                              margin: EdgeInsets.all(11),
-                              height: size.height * 0.06,
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.black26,
-                                  borderRadius: BorderRadius.all(Radius.circular(20))),
-                              child: DropdownButton(
-                                  onChanged: (e) {
-                                    setState(() {
-                                      hotels = forcedHotelField;
-                                    });
-                                  },
-                                  value:hotels,
-                                  icon: Icon(Icons.arrow_drop_down),
-                                  elevation: 20,
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                  ),
-                                  underline: Container(
-                                    color: Colors.transparent,
-                                  ),
-                                  items: hotelsList
-                                      .map<DropdownMenuItem>(( e) {
-                                    return DropdownMenuItem(
-                                      value: e,
-                                      child: Text(e.toString()),
-                                    );
-                                  }).toList()),
-                            ),
-                ],
-              ),
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left:12.0),
-                    child: Text("Select Car"),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(11),
-                    height: size.height * 0.06,
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.black26,
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    child: DropdownButton(
-                        onChanged: (e) {
-                          setState(() {
-                            car = forcedCarField;
-                          });
-                        },
-                        value: car,
-                        icon: Icon(Icons.arrow_drop_down),
-                        elevation: 20,
-                        style: TextStyle(
-                          color: Colors.black87,
-                        ),
-                        underline: Container(
-                          color: Colors.transparent,
-                        ),
-                        items: cars
-                            .map<DropdownMenuItem>(( e) {
-                          return DropdownMenuItem(
-                            value: e,
-                            child: Text(e.toString()),
-                          );
-                        }).toList()),
-                  ),
-                ],
-              ),
-            ],
-          ),
 
           Padding(
             padding: EdgeInsets.only(left: size.width * 0.03),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: Text(
-                        "No Of Seats",
-                        style: TextStyle(
-                            fontSize: size.height * 0.024, color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(11),
-                      height: size.height * 0.06,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.black26,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: DropdownButton<int>(
-                          onChanged: (e) {
-                            setState(() {
-                              seats = e;
-                            });
-                          },
-                          value: seats,
-                          icon: Icon(Icons.arrow_drop_down),
-                          elevation: 20,
-                          style: TextStyle(
-                            color: Colors.black87,
-                          ),
-                          underline: Container(
-                            color: Colors.transparent,
-                          ),
-                          items: <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                              .map<DropdownMenuItem<int>>((int e) {
-                            return DropdownMenuItem<int>(
-                              value: e,
-                              child: Text(e.toString()),
-                            );
-                          }).toList()),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Text(
+                    "No Of Seats",
+                    style: TextStyle(
+                        fontSize: size.height * 0.024, color: Colors.black),
+                  ),
                 ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(11.0),
-                      child: Text(
-                        "Select Flight",
-                        style: TextStyle(
-                            fontSize: size.height * 0.024, color: Colors.black),
+                Container(
+                  margin: EdgeInsets.all(11),
+                  height: size.height * 0.06,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: DropdownButton<int>(
+                      onChanged: (e) {
+                        setState(() {
+                          seats = e;
+                        });
+                      },
+                      value: seats,
+                      icon: Icon(Icons.arrow_drop_down),
+                      elevation: 20,
+                      style: TextStyle(
+                        color: Colors.black87,
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(11),
-                      height: size.height * 0.06,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.black26,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: DropdownButton(
-                          onChanged: (e) {
-                            setState(() {
-                              flights = forcedFlightField;
-                            });
-                          },
-                          value:flights,
-                          icon: Icon(Icons.arrow_drop_down),
-                          elevation: 20,
-                          style: TextStyle(
-                            color: Colors.black87,
-                          ),
-                          underline: Container(
-                            color: Colors.transparent,
-                          ),
-                          items: airlines.map<DropdownMenuItem>((e) {
-                            return DropdownMenuItem(
-                              value: e,
-                              child: Text(e.toString()),
-                            );
-                          }).toList()),
-                    ),
-                  ],
+                      underline: Container(
+                        color: Colors.transparent,
+                      ),
+                      items: <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                          .map<DropdownMenuItem<int>>((int e) {
+                        return DropdownMenuItem<int>(
+                          value: e,
+                          child: Text(e.toString()),
+                        );
+                      }).toList()),
                 ),
               ],
             ),
           ),
           TextButton(onPressed: (){
-            selectedHotelPrice = hotelPrices[hotelsList.indexOf(forcedHotelField)];
-            selectedFlightPrice = flightsPrices[airlines.indexOf(forcedFlightField)];
+            selectedHotelPrice = 125;
+            selectedFlightPrice = 499;
             selectedAirline = forcedFlightField;
             selectedHotel = forcedHotelField;
             Navigator.push(context, MaterialPageRoute(builder:
