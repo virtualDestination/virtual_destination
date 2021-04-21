@@ -15,7 +15,7 @@ class forceFlight extends StatefulWidget {
 }
 
 class _forceFlightState extends State<forceFlight> {
-  String fromCity = "A Coruña", toCity = "A Coruña", flights;
+  String fromCity, toCity, flights;
   int bags = 0, seats = 0;
 
   _startDatePicker() async {
@@ -59,7 +59,7 @@ class _forceFlightState extends State<forceFlight> {
               style: TextStyle(
                   fontSize: size.width * 0.06,
                   fontWeight: FontWeight.w800,
-                  color: kPrimaryColor),
+                  color: Colors.black87),
             ),
           ),
           Padding(
@@ -73,19 +73,19 @@ class _forceFlightState extends State<forceFlight> {
             margin: EdgeInsets.all(8),
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-                color: kPrimaryLightColor,
+                color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   fromCity = e;
-                  // });
+                  setState(() {
+                    fromCity = forcedFromField;
+                  });
                 },
-                value: (forcedFromField!=null) ? forcedFromField : fromCity,
+                value:fromCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
                   color: Colors.transparent,
@@ -108,19 +108,19 @@ class _forceFlightState extends State<forceFlight> {
             margin: EdgeInsets.all(7),
             padding: EdgeInsets.all(7),
             decoration: BoxDecoration(
-                color: kPrimaryLightColor,
+                color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   toCity = e;
-                  // });
+                  setState(() {
+                    toCity = forcedToField;
+                  });
                 },
-                value: (forcedToField!=null)?forcedToField:toCity,
+                value:toCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
                   color: Colors.transparent,
@@ -152,7 +152,7 @@ class _forceFlightState extends State<forceFlight> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                              color: kPrimaryLightColor,
+                              color: Colors.black26,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Center(
@@ -160,7 +160,7 @@ class _forceFlightState extends State<forceFlight> {
                                   .toIso8601String()
                                   .substring(0, 10))),
                         ),
-                        style: TextButton.styleFrom(primary: kPrimaryColor)),
+                        style: TextButton.styleFrom(primary: Colors.black87)),
                   ],
                 ),
               ),
@@ -176,14 +176,14 @@ class _forceFlightState extends State<forceFlight> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                              color: kPrimaryLightColor,
+                              color: Colors.black26,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Center(
                               child: Text(
                                   endDate.toIso8601String().substring(0, 10))),
                         ),
-                        style: TextButton.styleFrom(primary: kPrimaryColor)),
+                        style: TextButton.styleFrom(primary: Colors.black87)),
                   ],
                 ),
               ),
@@ -209,7 +209,7 @@ class _forceFlightState extends State<forceFlight> {
                       height: size.height * 0.06,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
+                          color: Colors.black26,
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: DropdownButton<int>(
                           onChanged: (e) {
@@ -221,7 +221,7 @@ class _forceFlightState extends State<forceFlight> {
                           icon: Icon(Icons.arrow_drop_down),
                           elevation: 20,
                           style: TextStyle(
-                            color: Color.fromRGBO(8, 34, 119, 1),
+                            color: Colors.black87,
                           ),
                           underline: Container(
                             color: Colors.transparent,
@@ -251,19 +251,19 @@ class _forceFlightState extends State<forceFlight> {
                       height: size.height * 0.06,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
+                          color: Colors.black26,
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: DropdownButton(
                           onChanged: (e) {
-                          //   setState(() {
-                          //     flights = e;
-                          //   });
+                            setState(() {
+                              flights = forcedFlightField;
+                            });
                           },
-                          value: (forcedFlightField!=null)?forcedFlightField:flights,
+                          value:flights,
                           icon: Icon(Icons.arrow_drop_down),
                           elevation: 20,
                           style: TextStyle(
-                            color: Color.fromRGBO(8, 34, 119, 1),
+                            color: Colors.black87,
                           ),
                           underline: Container(
                             color: Colors.transparent,
@@ -289,7 +289,7 @@ class _forceFlightState extends State<forceFlight> {
                 width: size.width * 0.8,
                 height: size.height * 0.08,
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(61, 23, 88, 1),
+                    color: Colors.black87,
                     borderRadius: BorderRadius.all(Radius.circular(35))),
                 margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                 child: Center(
@@ -342,7 +342,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -354,7 +354,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,
@@ -384,7 +384,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -396,7 +396,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,
@@ -426,7 +426,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -438,7 +438,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,

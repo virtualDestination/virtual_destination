@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:virtual_destination/Customize/forcedMode.dart';
+// import 'package:virtual_destination/Perform/Forced%20Mode/forcedCars.dart';
 import 'package:virtual_destination/Perform/searchFlights.dart';
 import 'package:virtual_destination/Perform/searchHotels.dart';
+import 'package:virtual_destination/Search%20Cars/resultCarCont.dart';
 // import 'package:shellcode_internship/Search%20Flights/resultFlightsContainer.dart';
 import 'package:virtual_destination/Search%20HotelsAndFlights/bookingConfirmPage.dart';
 import 'package:virtual_destination/Search%20HotelsAndFlights/resultFlightsContainer.dart';
@@ -26,7 +28,7 @@ class forceFlightAndHotels extends StatefulWidget {
 }
 
 class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
- String fromCity = "A Coruña", toCity = "A Coruña", flights,hotels;
+ String fromCity, toCity, flights,hotels,car;
   int bags = 0, seats = 0;
 
   _startDatePicker() async {
@@ -70,7 +72,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
               style: TextStyle(
                   fontSize: size.width * 0.06,
                   fontWeight: FontWeight.w800,
-                  color: kPrimaryColor),
+                  color: Colors.black87),
             ),
           ),
           Padding(
@@ -84,19 +86,19 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
             margin: EdgeInsets.all(8),
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-                color: kPrimaryLightColor,
+                color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   fromCity = e;
-                  // });
+                  setState(() {
+                    fromCity = forcedFromField;
+                  });
                 },
-                value: (forcedFromField!=null)?forcedFromField:fromCity,
+                value:fromCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
                   color: Colors.transparent,
@@ -119,19 +121,19 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
             margin: EdgeInsets.all(7),
             padding: EdgeInsets.all(7),
             decoration: BoxDecoration(
-                color: kPrimaryLightColor,
+                color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   toCity = e;
-                  // });
+                  setState(() {
+                    toCity = forcedToField;
+                  });
                 },
-                value: (forcedToField!=null)?forcedToField:toCity,
+                value:toCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
                   color: Colors.transparent,
@@ -143,6 +145,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                   );
                 }).toList()),
           ),
+
           forcedPeopleCount(
             bags: bags,
             seats: seats,
@@ -163,7 +166,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                              color: kPrimaryLightColor,
+                              color: Colors.black26,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Center(
@@ -171,7 +174,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                                   .toIso8601String()
                                   .substring(0, 10))),
                         ),
-                        style: TextButton.styleFrom(primary: kPrimaryColor)),
+                        style: TextButton.styleFrom(primary: Colors.black87)),
                   ],
                 ),
               ),
@@ -187,53 +190,103 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                              color: kPrimaryLightColor,
+                              color: Colors.black26,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
                           child: Center(
                               child: Text(
                                   endDate.toIso8601String().substring(0, 10))),
                         ),
-                        style: TextButton.styleFrom(primary: kPrimaryColor)),
+                        style: TextButton.styleFrom(primary: Colors.black87)),
                   ],
                 ),
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(left:12.0),
-            child: Text("Select Hotel"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left:12.0),
+                    child: Text("Select Hotel"),
+                  ),
+                  Container(
+                              margin: EdgeInsets.all(11),
+                              height: size.height * 0.06,
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: Colors.black26,
+                                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                              child: DropdownButton(
+                                  onChanged: (e) {
+                                    setState(() {
+                                      hotels = forcedHotelField;
+                                    });
+                                  },
+                                  value:hotels,
+                                  icon: Icon(Icons.arrow_drop_down),
+                                  elevation: 20,
+                                  style: TextStyle(
+                                    color: Colors.black87,
+                                  ),
+                                  underline: Container(
+                                    color: Colors.transparent,
+                                  ),
+                                  items: hotelsList
+                                      .map<DropdownMenuItem>(( e) {
+                                    return DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e.toString()),
+                                    );
+                                  }).toList()),
+                            ),
+                ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left:12.0),
+                    child: Text("Select Car"),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(11),
+                    height: size.height * 0.06,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.black26,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: DropdownButton(
+                        onChanged: (e) {
+                          setState(() {
+                            car = forcedCarField;
+                          });
+                        },
+                        value: car,
+                        icon: Icon(Icons.arrow_drop_down),
+                        elevation: 20,
+                        style: TextStyle(
+                          color: Colors.black87,
+                        ),
+                        underline: Container(
+                          color: Colors.transparent,
+                        ),
+                        items: cars
+                            .map<DropdownMenuItem>(( e) {
+                          return DropdownMenuItem(
+                            value: e,
+                            child: Text(e.toString()),
+                          );
+                        }).toList()),
+                  ),
+                ],
+              ),
+            ],
           ),
-          Container(
-                      margin: EdgeInsets.all(11),
-                      height: size.height * 0.06,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: DropdownButton(
-                          onChanged: (e) {
-                            // setState(() {
-                            //   hotels = e;
-                            // });
-                          },
-                          value: (forcedHotelField!=null)?forcedHotelField:hotels,
-                          icon: Icon(Icons.arrow_drop_down),
-                          elevation: 20,
-                          style: TextStyle(
-                            color: Color.fromRGBO(8, 34, 119, 1),
-                          ),
-                          underline: Container(
-                            color: Colors.transparent,
-                          ),
-                          items: hotelsList
-                              .map<DropdownMenuItem>(( e) {
-                            return DropdownMenuItem(
-                              value: e,
-                              child: Text(e.toString()),
-                            );
-                          }).toList()),
-                    ),
+
           Padding(
             padding: EdgeInsets.only(left: size.width * 0.03),
             child: Row(
@@ -254,7 +307,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                       height: size.height * 0.06,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
+                          color: Colors.black26,
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: DropdownButton<int>(
                           onChanged: (e) {
@@ -266,7 +319,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                           icon: Icon(Icons.arrow_drop_down),
                           elevation: 20,
                           style: TextStyle(
-                            color: Color.fromRGBO(8, 34, 119, 1),
+                            color: Colors.black87,
                           ),
                           underline: Container(
                             color: Colors.transparent,
@@ -296,19 +349,19 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                       height: size.height * 0.06,
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
+                          color: Colors.black26,
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       child: DropdownButton(
                           onChanged: (e) {
-                            // setState(() {
-                            //   flights = e;
-                            // });
+                            setState(() {
+                              flights = forcedFlightField;
+                            });
                           },
-                          value: (forcedFlightField!=null)?forcedFlightField:flights,
+                          value:flights,
                           icon: Icon(Icons.arrow_drop_down),
                           elevation: 20,
                           style: TextStyle(
-                            color: Color.fromRGBO(8, 34, 119, 1),
+                            color: Colors.black87,
                           ),
                           underline: Container(
                             color: Colors.transparent,
@@ -336,7 +389,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
             width: size.width*0.8,
             height: size.height*0.08,
             decoration: BoxDecoration(
-                color: Color.fromRGBO(61, 23, 88, 1),
+                color: Colors.black87,
                 borderRadius: BorderRadius.all(Radius.circular(35))
             ),
             margin: EdgeInsets.symmetric(horizontal: size.width*0.08),
@@ -390,7 +443,7 @@ class _forcedPeopleCountState extends State<forcedPeopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -402,7 +455,7 @@ class _forcedPeopleCountState extends State<forcedPeopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,
@@ -432,7 +485,7 @@ class _forcedPeopleCountState extends State<forcedPeopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -444,7 +497,7 @@ class _forcedPeopleCountState extends State<forcedPeopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,
@@ -474,7 +527,7 @@ class _forcedPeopleCountState extends State<forcedPeopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -486,7 +539,7 @@ class _forcedPeopleCountState extends State<forcedPeopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,

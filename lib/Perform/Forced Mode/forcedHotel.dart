@@ -12,7 +12,7 @@ class forcedHotelDropdown extends StatefulWidget {
 }
 
 class _forcedHotelDropdownState extends State<forcedHotelDropdown> {
-  String hotel = "RitzCarlton";
+  String hotel;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,19 +21,19 @@ class _forcedHotelDropdownState extends State<forcedHotelDropdown> {
             padding: EdgeInsets.all(8),
             width: size.width*0.4,
             decoration: BoxDecoration(
-                color: kPrimaryLightColor,
+                color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
                 onChanged: (e) {
-                  // setState(() {
-                  //   hotel = e;
-                  // });
+                  setState(() {
+                    hotel = forcedHotelField;
+                  });
                 },
-                value: forcedHotelField,
+                value: hotel,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
-                  color: Color.fromRGBO(8, 34, 119, 1),
+                  color: Colors.black87,
                 ),
                 underline: Container(
                   color: Colors.transparent,

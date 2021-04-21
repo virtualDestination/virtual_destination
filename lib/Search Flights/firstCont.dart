@@ -119,7 +119,7 @@ class firstContainer extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.all(size.width*0.02),
-                    child: Text("${(isPreloaded)?airlines[no-1]:name}",style: TextStyle(
+                    child: Text("${(name==null)?airlines[no-1]:name}",style: TextStyle(
                       color: Colors.black87,
                       fontSize: size.width*0.04
                     ),),

@@ -58,12 +58,12 @@ class confirmBooking extends StatelessWidget {
             width: size.width,
             decoration: BoxDecoration(color: Colors.white),
             // alignment: Alignment.center,
-            child: (isPreloaded)?Image.asset("assets/images/hotel$no.jpeg",fit: BoxFit.fill,):
+            child: (filePath==null)?Image.asset("assets/images/hotel$no.jpeg",fit: BoxFit.fill,):
                 Image.file(File(filePath),fit: BoxFit.fill,)
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("${(isPreloaded)?hotelsList[no-1]:name}",style: TextStyle(
+            child: Text("${(name==null)?hotelsList[no-1]:name}",style: TextStyle(
               color: Colors.black87,
               fontSize: size.width*0.08,
               fontWeight: FontWeight.w700
@@ -166,7 +166,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${(isPreloaded)?hotelPrices[no-1]:price}",
+                    "$currency ${(price==null)?hotelPrices[no-1]:price}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),
@@ -180,7 +180,7 @@ class bottomSheet extends StatelessWidget {
             child: TextButton(
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
-                  noti.sendNoti("Hotel Stay", (isForced)?forcedToField:toField, (isForced)?forcedHotelField:(isPreloaded)?hotelsList[no-1]:name);
+                  noti.sendNoti("Hotel Stay", (isForced)?forcedToField:toField, (isForced)?forcedHotelField:(name==null)?hotelsList[no-1]:name);
                 },
                 child: Container(
                   width: size.width * 0.32,

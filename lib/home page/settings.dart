@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:image_picker/image_picker.dart';
 import 'package:virtual_destination/colors.dart';
@@ -73,12 +74,11 @@ class _settingsState extends State<settings> {
   }
 
   Future<void> setIsPerformance() async{
-    LocalStorage sharedPreferences = LocalStorage('travel_app');
-    await sharedPreferences.ready;
-    if(sharedPreferences.getItem('performance')==null){
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getBool('performance')==null){
       isPerformance = false;
     }else{
-      isPerformance = sharedPreferences.getItem('performance');
+      isPerformance = sharedPreferences.getBool('performance');
     }
   }
 
@@ -107,7 +107,7 @@ class _settingsState extends State<settings> {
             Container(
               width: size.width,
               height: size.height,
-              child: Image.asset("assets/images/settings.png",fit: BoxFit.fill,),
+              color: Colors.white,
             ),
             ListView(
               // crossAxisAlignment: CrossAxisAlignment.center,
@@ -122,7 +122,7 @@ class _settingsState extends State<settings> {
                       children: [
                         Text("Force Mode",
                           style: TextStyle(
-                              color: kPrimaryColor,
+                              color: Colors.black87,
                               fontSize: size.width*0.06
                           ),),
                         Switch(value: isForced, onChanged: (val){
@@ -134,7 +134,7 @@ class _settingsState extends State<settings> {
                             }
                           });
                         },
-                          activeColor: kPrimaryColor,)
+                          activeColor: Colors.black87,)
                       ],
                     )),
                 Container(
@@ -146,7 +146,7 @@ class _settingsState extends State<settings> {
                       children: [
                         Text("Preloaded Listing",
                           style: TextStyle(
-                              color: kPrimaryColor,
+                              color: Colors.black87,
                               fontSize: size.width*0.06
                           ),),
                         Switch(value: isPreloaded, onChanged: (val){
@@ -158,7 +158,7 @@ class _settingsState extends State<settings> {
                             }
                           });
                         },
-                          activeColor: kPrimaryColor,)
+                          activeColor: Colors.black87,)
                       ],
                     )),
                 Container(
@@ -170,7 +170,7 @@ class _settingsState extends State<settings> {
                     children: [
                       Text("Change homepage image",style: TextStyle(
                           fontSize: size.width*0.05,
-                          color: kPrimaryColor
+                          color: Colors.black87
                       ),),
                       SizedBox(
                         width: size.width*0.01,
@@ -191,7 +191,7 @@ class _settingsState extends State<settings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Change Address Bar url",style: TextStyle(
-                          color: kPrimaryColor,
+                          color: Colors.black87,
                           fontSize: size.width*0.05
                       ),),
                       IconButton(icon: Icon(Icons.link,color: Colors.black,), onPressed: ()async{
@@ -240,7 +240,7 @@ class _settingsState extends State<settings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Change Currency",style: TextStyle(
-                          color: kPrimaryColor,
+                          color: Colors.black87,
                           fontSize: size.width*0.05
                       ),),
                       Text("$currency",style: TextStyle(
@@ -292,7 +292,7 @@ class _settingsState extends State<settings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Update Countdown",style: TextStyle(
-                          color: kPrimaryColor,
+                          color: Colors.black87,
                           fontSize: size.width*0.05
                       ),),
                       Text("$countdown"),
@@ -340,7 +340,7 @@ class _settingsState extends State<settings> {
                       children: [
                         Text("Performance Mode",
                           style: TextStyle(
-                              color: kPrimaryColor,
+                              color: Colors.black87,
                               fontSize: size.width*0.06
                           ),),
                         Switch(value: isPerformance, onChanged: (val){
@@ -354,7 +354,7 @@ class _settingsState extends State<settings> {
                             }
                           });
                         },
-                          activeColor: kPrimaryColor,)
+                          activeColor: Colors.black87,)
                       ],
                     )),
                 Container(
@@ -366,16 +366,16 @@ class _settingsState extends State<settings> {
                     children: [
                       Text("Change bottom image-1",style: TextStyle(
                           fontSize: size.width*0.05,
-                          color: kPrimaryColor
+                          color: Colors.black87
                       ),),
                       SizedBox(
                         width: size.width*0.01,
                       ),
-                      (imageFile==null)?TextButton(child: Text("Select an image",style:TextStyle(
+                      (bottomImage1==null)?TextButton(child: Text("Select an image",style:TextStyle(
                           fontSize: size.width*0.02
                       ),),onPressed: pickImage1,):Container(height:size.height*0.3,width: size.width*0.3,decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),child: FlatButton(child: Image.file(imageFile),onPressed: pickImage1,))
+                      ),child: FlatButton(child: Image.file(bottomImage1),onPressed: pickImage1,))
                     ],
                   ),
                 ),
@@ -388,16 +388,16 @@ class _settingsState extends State<settings> {
                     children: [
                       Text("Change bottom image-2",style: TextStyle(
                           fontSize: size.width*0.05,
-                          color: kPrimaryColor
+                          color: Colors.black87
                       ),),
                       SizedBox(
                         width: size.width*0.01,
                       ),
-                      (imageFile==null)?TextButton(child: Text("Select an image",style:TextStyle(
+                      (bottomImage2==null)?TextButton(child: Text("Select an image",style:TextStyle(
                           fontSize: size.width*0.02
                       ),),onPressed: pickImage2,):Container(height:size.height*0.3,width: size.width*0.3,decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),child: FlatButton(child: Image.file(imageFile),onPressed: pickImage2,))
+                      ),child: FlatButton(child: Image.file(bottomImage2),onPressed: pickImage2,))
                     ],
                   ),
                 ),
@@ -410,16 +410,16 @@ class _settingsState extends State<settings> {
                     children: [
                       Text("Change bottom image-3",style: TextStyle(
                           fontSize: size.width*0.05,
-                          color: kPrimaryColor
+                          color: Colors.black87
                       ),),
                       SizedBox(
                         width: size.width*0.01,
                       ),
-                      (imageFile==null)?TextButton(child: Text("Select an image",style:TextStyle(
+                      (bottomImage3==null)?TextButton(child: Text("Select an image",style:TextStyle(
                           fontSize: size.width*0.02
                       ),),onPressed: pickImage3,):Container(height:size.height*0.3,width: size.width*0.3,decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20))
-                      ),child: FlatButton(child: Image.file(imageFile),onPressed: pickImage3,))
+                      ),child: FlatButton(child: Image.file(bottomImage3),onPressed: pickImage3,))
                     ],
                   ),
                 ),

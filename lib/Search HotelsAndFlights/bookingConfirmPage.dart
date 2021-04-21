@@ -5,6 +5,7 @@ import 'package:virtual_destination/Perform/searchFlights.dart';
 import 'package:virtual_destination/Search%20Flights/resultFlightsContainer.dart';
 // import 'package:shellcode_internship/Search%20Hotels/resultHotelsContainer.dart';
 import 'package:virtual_destination/Search%20HotelsAndFlights/flightConfirmCont.dart';
+import 'package:virtual_destination/Search%20HotelsAndFlights/forcedCarConfirmCont.dart';
 import 'package:virtual_destination/Search%20HotelsAndFlights/hotelConfirmCont.dart';
 import 'package:virtual_destination/Search%20HotelsAndFlights/resultFlightsContainer.dart';
 import 'package:virtual_destination/Search%20HotelsAndFlights/resultHotelsContainer.dart';
@@ -113,6 +114,16 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
               borderRadius: BorderRadius.all(Radius.circular(16))
               ),
           ),
+          (isForced)?carCont():Text(""),
+          (isForced)?Container(
+            width: size.width,
+            height: 5,
+            margin: EdgeInsets.symmetric(horizontal: size.width*00.056),
+            decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.all(Radius.circular(16))
+            ),
+          ):Text(""),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text("Reviews",style:TextStyle(

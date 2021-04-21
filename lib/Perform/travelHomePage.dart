@@ -11,6 +11,7 @@ import 'package:virtual_destination/home%20page/homePage.dart';
 import 'file:///C:/Users/nmabh/AndroidStudioProjects/virtual_destination/lib/Perform/topBar.dart';
 import 'package:virtual_destination/home%20page/settings.dart';
 
+
 class performHome extends StatefulWidget {
   @override
   _performHomeState createState() => _performHomeState();
@@ -87,7 +88,7 @@ class _performHomeState extends State<performHome> {
           ),
           Container(
             // width: size.width,
-            height: (isForced)?size.height*0.99:size.height*0.78,
+            height: (isForced)?size.height*1.1:size.height*0.78,
             child: PageView(
               controller: _pageController,
               physics: NeverScrollableScrollPhysics(),

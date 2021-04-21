@@ -44,29 +44,35 @@ class _createdListsState extends State<createdLists> {
       }
 
       List<Widget> widgets = list.companies.reversed.toList().map((item) {
-        return Card(
-          elevation: 20,
-          child: ListTile(
-
-            leading: Container(
-              width: 100,
-                height: 120,
-                child: Image.file(File(item.filePath),fit: BoxFit.fill,)),
-            title: Text(item.name),
-            subtitle: Text(item.price.toString()+"${item.typeOfTrip}"),
-            trailing: IconButton(icon: Icon(Icons.delete), onPressed: (){
-              list.companies.remove(item);
-              _saveToStorage();
-              setState(() {});
-            }),
+        return Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Card(
+            elevation: 20,
+            shadowColor: Colors.white,
+            child: ListTile(
+              leading: Container(
+                width: 100,
+                  height: 120,
+                  child: Image.file(File(item.filePath),fit: BoxFit.fill,)),
+              title: Text(item.name),
+              subtitle: Text(item.price.toString()),
+              trailing: IconButton(icon: Icon(Icons.delete), onPressed: (){
+                list.companies.remove(item);
+                _saveToStorage();
+                setState(() {});
+              }),
+            ),
           ),
         );
       }).toList();
 
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: widgets,
+      return Container(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02),
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: widgets,
+        ),
       );
     },
       future: storage.ready,

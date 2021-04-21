@@ -32,7 +32,7 @@ class _carsListState extends State<carsList> {
               if (snapshot.hasData) {
                 List _cities = snapshot.data['Cars'];
                 return Container(
-                  margin: EdgeInsets.only(bottom: size.height*0.09,top: 12),
+                  margin: EdgeInsets.only(bottom: size.height*0.01),
                   child: ListView.separated(
                       itemBuilder: (context, index) {
                         return itemCard(_cities[index], context);
@@ -52,7 +52,7 @@ class _carsListState extends State<carsList> {
           ),
         ),
         Positioned(
-          bottom: size.height*0.15,
+          bottom: size.height*0.09,
           right: 10,
           child: Container(
             child: FloatingActionButton(
@@ -110,7 +110,7 @@ class _carsListState extends State<carsList> {
       padding:
       EdgeInsets.symmetric(horizontal: 15, vertical: size.height * 0.02),
       decoration: BoxDecoration(
-          border: Border.fromBorderSide(BorderSide(color: kPrimaryColor)),
+          border: Border.fromBorderSide(BorderSide(color: Colors.black54)),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,7 +123,7 @@ class _carsListState extends State<carsList> {
               style: TextStyle(
                   fontSize: size.height * 0.02,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFFbf00ff)),
+                  color: Colors.black87),
             ),
           ),
           IconButton(

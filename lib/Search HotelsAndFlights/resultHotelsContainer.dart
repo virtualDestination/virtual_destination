@@ -61,7 +61,7 @@ class _hotelsContainerState extends State<hotelsContainer> {
           Container(
             height: size.height*0.2,
             width: size.width,
-            child: (isPreloaded)?Image.asset("assets/images/hotel${widget.no}.jpeg",
+            child: (widget.filePath==null)?Image.asset("assets/images/hotel${widget.no}.jpeg",
             fit: BoxFit.fill,):Image.file(File(widget.filePath),fit: BoxFit.fill,),
           ),
           Row(
@@ -70,7 +70,7 @@ class _hotelsContainerState extends State<hotelsContainer> {
            children: [
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("${(isPreloaded)?hotelsList[widget.no-1]:widget.name}",style: TextStyle(
+               child: Text("${(widget.name==null)?hotelsList[widget.no-1]:widget.name}",style: TextStyle(
                  fontSize: size.width*0.045,
                  fontWeight: FontWeight.bold
                ),),
@@ -79,7 +79,7 @@ class _hotelsContainerState extends State<hotelsContainer> {
                padding: const EdgeInsets.all(9.0),
                child: Column(
                  children: [
-                   Text("$currency ${(isPreloaded)?hotelPrices[widget.no-1]:widget.price}",style: TextStyle(
+                   Text("$currency ${(widget.price==null)?hotelPrices[widget.no-1]:widget.price}",style: TextStyle(
                      fontSize: size.width*0.035,
                      fontWeight: FontWeight.w700
                    ),),
@@ -98,8 +98,8 @@ class _hotelsContainerState extends State<hotelsContainer> {
                 Text("$stars"),
                 TextButton(onPressed: (){
                   setState(() {
-                    selectedHotel = (isPreloaded)?hotelsList[widget.no-1]:widget.name;
-                    selectedHotelPrice = (isPreloaded)?hotelPrices[widget.no-1]:widget.price;
+                    selectedHotel = (widget.name==null)?hotelsList[widget.no-1]:widget.name;
+                    selectedHotelPrice = (widget.price==null)?hotelPrices[widget.no-1]:widget.price;
                   });
                   print(selectedHotel+selectedHotelPrice.toString());
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>resultPage(hotelNo: widget.no,)));

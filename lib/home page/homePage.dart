@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtual_destination/Customize/mainCustomPage.dart';
 import 'package:virtual_destination/Perform/travelHomePage.dart';
 import 'package:virtual_destination/colors.dart';
@@ -23,9 +24,8 @@ class homePage extends StatefulWidget {
 class _homePageState extends State<homePage> {
 
   void logOut(bool value) async{
-    LocalStorage sharedPreferences = LocalStorage('travel_app');
-    await sharedPreferences.ready;
-    sharedPreferences.setItem('logIn', value);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool('logIn', value);
     print("Succesfully Logged Out");
   }
 
@@ -96,7 +96,8 @@ class _homePageState extends State<homePage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          elevation: 0,
+          backgroundColor: Colors.black87,
           title: Text("Virtual Destination",style: TextStyle(
             color: Colors.white,
             fontSize: size.height*0.0278,
@@ -125,6 +126,7 @@ class _homePageState extends State<homePage> {
               Container(
                 height: size.height,
                 width: size.width,
+                color: Colors.black87,
                 child: Image.asset("assets/images/homePage.png",fit: BoxFit.fill,),
               ),
               Column(
@@ -133,17 +135,17 @@ class _homePageState extends State<homePage> {
                 children: [
                   Padding(
                       padding: EdgeInsets.only(left:size.width*0.1),
-                      child: RoundedButton(text: "Video Tutorial",textColor: Colors.white,color: kPrimaryColor,press: (){
+                      child: RoundedButton(text: "Video Tutorial",textColor: Colors.white,color: Colors.green,press: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>ytVidPlayer()));
                       },)),
                   Padding(
                       padding: EdgeInsets.only(left:size.width*0.1),
-                      child: RoundedButton(text: "Customise",textColor: Colors.white,color: kPrimaryColor,press: (){
+                      child: RoundedButton(text: "Customise",textColor: Colors.white,color: Colors.green,press: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>customise()));
                       },)),
                   Padding(
                       padding: EdgeInsets.only(left:size.width*0.1),
-                      child: RoundedButton(text: "Perform",textColor: Colors.white,color: kPrimaryColor,press: (){
+                      child: RoundedButton(text: "Perform",textColor: Colors.white,color: Colors.green,press: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>performHome()));
                       },))
                 ],

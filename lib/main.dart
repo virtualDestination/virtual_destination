@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtual_destination/Network/cities.dart';
 import 'package:virtual_destination/Notifications/push_notification_service.dart';
 import 'package:virtual_destination/Perform/travelHomePage.dart';
@@ -43,16 +44,14 @@ String androidToken;
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   Future<bool> isLogedIn() async {
-    LocalStorage storage = LocalStorage('travel_app');
-    await storage.ready;
-    bool isLoggedIn = storage.getItem('logIn');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool isLoggedIn = sharedPreferences.getBool('logIn');
     return isLoggedIn;
   }
 
   Future<bool> isPerformanceMode() async{
-    LocalStorage sharedPreferences = LocalStorage('travel_app');
-    await sharedPreferences.ready;
-    bool isPerformMode = sharedPreferences.getItem('performance');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool isPerformMode = sharedPreferences.getBool('performance');
     return isPerformMode;
   }
   @override
@@ -72,7 +71,6 @@ class MyApp extends StatelessWidget {
               future: isPerformanceMode(),
                 builder: (context,snapshot){
               if(snapshot.hasData){
-                print(snapshot.data.toString()+"Performance");
                 if(snapshot.data==true){
                   return performHome();
                 }else{

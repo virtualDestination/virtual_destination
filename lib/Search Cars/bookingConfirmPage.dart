@@ -62,7 +62,7 @@ class confirmBooking extends StatelessWidget {
             width: size.width,
             decoration: BoxDecoration(color: Colors.white),
             // alignment: Alignment.center,
-            child: (isPreloaded)?Image.asset("assets/images/car$no.jpeg",fit: BoxFit.fill,):Image.file(File(filePath),fit: BoxFit.fill,),
+            child: (filePath==null)?Image.asset("assets/images/car$no.jpeg",fit: BoxFit.fill,):Image.file(File(filePath),fit: BoxFit.fill,),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -122,7 +122,7 @@ class confirmBooking extends StatelessWidget {
                       fontSize: size.width*0.06,
                     ),),
                   ),
-                  Text("$hotelReview",style: TextStyle(
+                  Text("$carReview",style: TextStyle(
                     color: Colors.black54,
                     fontSize: size.width*0.043,
                   ),)

@@ -70,7 +70,7 @@ class _srchHotelsState extends State<srchHotels> {
             padding: EdgeInsets.symmetric(horizontal: 1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
@@ -79,20 +79,27 @@ class _srchHotelsState extends State<srchHotels> {
                     "Search Hotels",
                     style: TextStyle(
                         fontSize: size.width * 0.06,
-                        color: kPrimaryColor,
+                        color: Colors.black87,
                         fontWeight: FontWeight.w800),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Going to",
-                    style: TextStyle(fontSize: size.width * 0.04),
+                Container(
+                  height: size.height*0.2,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Going to",
+                          style: TextStyle(fontSize: size.width * 0.04),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child:(isForced)? forcedHotelDropdown(hotels: hotels,): ToSearch(context, cities),
+                      ),
+                    ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child:(isForced)? forcedHotelDropdown(hotels: hotels,): ToSearch(context, cities),
                 ),
                 Container(
                   width: size.width,
@@ -112,7 +119,7 @@ class _srchHotelsState extends State<srchHotels> {
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   margin: EdgeInsets.symmetric(vertical: 12),
                                   decoration: BoxDecoration(
-                                      color: kPrimaryLightColor,
+                                      color: Colors.black26,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   child: Center(
@@ -121,7 +128,7 @@ class _srchHotelsState extends State<srchHotels> {
                                           .substring(0, 10))),
                                 ),
                                 style: TextButton.styleFrom(
-                                    primary: kPrimaryColor)),
+                                    primary: Colors.black87)),
                           ],
                         ),
                       ),
@@ -137,7 +144,7 @@ class _srchHotelsState extends State<srchHotels> {
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   margin: EdgeInsets.symmetric(vertical: 12),
                                   decoration: BoxDecoration(
-                                      color: kPrimaryLightColor,
+                                      color: Colors.black26,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20))),
                                   child: Center(
@@ -146,7 +153,7 @@ class _srchHotelsState extends State<srchHotels> {
                                           .substring(0, 10))),
                                 ),
                                 style: TextButton.styleFrom(
-                                    primary: kPrimaryColor)),
+                                    primary: Colors.black87)),
                           ],
                         ),
                       ),
@@ -161,7 +168,7 @@ class _srchHotelsState extends State<srchHotels> {
                   width: size.width*0.8,
                   height: size.height*0.08,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(61, 23, 88, 1),
+                    color: Colors.black87,
                     borderRadius: BorderRadius.all(Radius.circular(35))
                   ),
                   margin: EdgeInsets.symmetric(horizontal: size.width*0.08),
@@ -172,7 +179,7 @@ class _srchHotelsState extends State<srchHotels> {
                     ),),
                   ),
                 )),
-                // (isForced)? tripContainer(3) :Text("")
+                (isForced)? tripContainer(3) :Text("")
               ],
             ),
           );
@@ -290,7 +297,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -302,7 +309,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,
@@ -332,7 +339,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -344,7 +351,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,
@@ -374,7 +381,7 @@ class _peopleCountState extends State<peopleCount> {
                 height: size.height * 0.06,
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: kPrimaryLightColor,
+                    color: Colors.black26,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: DropdownButton<int>(
                     onChanged: (e) {
@@ -386,7 +393,7 @@ class _peopleCountState extends State<peopleCount> {
                     icon: Icon(Icons.arrow_drop_down),
                     elevation: 20,
                     style: TextStyle(
-                      color: Color.fromRGBO(8, 34, 119, 1),
+                      color: Colors.black87,
                     ),
                     underline: Container(
                       color: Colors.transparent,

@@ -52,15 +52,16 @@ class _hotelsResultPageState extends State<hotelsResultPage> {
       ),
 
 
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top:8.0),
-            child: travelInfoContainer(nights: widget.nights.inDays,),
-          ),
-          (isPreloaded)?Container(
-            height: size.height*0.58,
-            child: ListView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top:8.0),
+              child: travelInfoContainer(nights: widget.nights.inDays,),
+            ),
+            (isPreloaded)?ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               children: [
                 hotelsContainer(no: 1,),
                 hotelsContainer(no: 2,),
@@ -73,10 +74,7 @@ class _hotelsResultPageState extends State<hotelsResultPage> {
                 hotelsContainer(no: 9,),
                 hotelsContainer(no: 10,),
               ],
-            ),
-          ):Container(
-            height: size.height*0.58,
-            child: FutureBuilder(
+            ):Text(""),FutureBuilder(
                 future: storage.ready,
                 builder: (context,snapshot){
                   if (snapshot.data == null) {
@@ -105,6 +103,8 @@ class _hotelsResultPageState extends State<hotelsResultPage> {
                   }
                   if(snapshot.hasData){
                     return ListView.builder(
+                      shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         itemCount: list.companies.length,
                         itemBuilder: (context,index){
                           if(list.companies[index].typeOfTrip=="Hotel"){
@@ -117,9 +117,9 @@ class _hotelsResultPageState extends State<hotelsResultPage> {
                   }else{
                     return Center(child: CircularProgressIndicator());
                   }
-                }),
-          )
-        ],
+                })
+          ],
+        ),
       ),
     );
   }

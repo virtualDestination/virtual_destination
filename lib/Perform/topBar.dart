@@ -35,7 +35,7 @@ class _topBarState extends State<topBar> {
                 children: [Icon(Icons.flight), Text("Flights")],
               ),
             ),
-            style: TextButton.styleFrom(primary: kPrimaryColor)),
+            style: TextButton.styleFrom(primary: Colors.black87)),
         TextButton(
             onPressed: () {
               setState(() {
@@ -54,7 +54,7 @@ class _topBarState extends State<topBar> {
                 children: [Icon(Icons.hotel), Text("Hotel")],
               ),
             ),
-            style: TextButton.styleFrom(primary: kPrimaryColor)),
+            style: TextButton.styleFrom(primary: Colors.black87)),
         TextButton(
             onPressed: () {
               setState(() {
@@ -78,7 +78,7 @@ class _topBarState extends State<topBar> {
                 ],
               ),
             ),
-            style: TextButton.styleFrom(primary: kPrimaryColor)),
+            style: TextButton.styleFrom(primary: Colors.black87)),
         TextButton(
             onPressed: () {
               setState(() {
@@ -97,7 +97,7 @@ class _topBarState extends State<topBar> {
                 children: [Icon(Icons.directions_car), Text("Car")],
               ),
             ),
-            style: TextButton.styleFrom(primary: kPrimaryColor))
+            style: TextButton.styleFrom(primary: Colors.black87))
       ],
     );
   }

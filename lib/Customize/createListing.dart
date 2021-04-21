@@ -26,6 +26,8 @@ ListOfCompanies list = new ListOfCompanies();
 
 
 class createListing extends StatefulWidget {
+  PageController pageController;
+  createListing({this.pageController});
   @override
   _createListingState createState() => _createListingState();
 }
@@ -62,7 +64,7 @@ class _createListingState extends State<createListing> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    storage.clear();
+    // storage.clear();
     return FutureBuilder(builder: (context,snapshot){
       if(snapshot.hasData){
         if(snapshot.data==true){
@@ -184,8 +186,10 @@ class _createListingState extends State<createListing> {
                     color: Colors.green,
                     text: "Add",
                     press: (){
-                      _addItem(tempName, typeOfTrip, tempPrice, selectImage.path);
-                      Navigator.pop(context);
+                      if(tempName!=null && tempPrice!=null && tempName!=null && selectImage!=null){
+                        _addItem(tempName, typeOfTrip, tempPrice, selectImage.path);
+                        Navigator.pop(context);
+                      }
                     },
                   ),
                 )

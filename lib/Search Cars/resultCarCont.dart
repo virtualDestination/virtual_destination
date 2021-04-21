@@ -40,7 +40,7 @@ class carContainer extends StatelessWidget {
           Container(
             height: size.height*0.2,
             width: size.width,
-            child: (isPreloaded)?Image.asset("assets/images/car$no.jpeg",
+            child: (filePath==null)?Image.asset("assets/images/car$no.jpeg",
               fit: BoxFit.fill,):Image.file(File(filePath),fit: BoxFit.fill,),
           ),
           Row(
@@ -58,7 +58,7 @@ class carContainer extends StatelessWidget {
                padding: const EdgeInsets.all(9.0),
                child: Column(
                  children: [
-                   Text("$currency ${(isPreloaded)?carPrices[no-1]:price}",style: TextStyle(
+                   Text("$currency ${(price==null)?carPrices[no-1]:price}",style: TextStyle(
                      fontSize: size.width*0.035
                    ),),
                    Text("Per day",style:TextStyle(
@@ -72,7 +72,7 @@ class carContainer extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left:size.width*0.5),
             child: TextButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>confirmBooking(no: no,selectedCar: (isPreloaded)?cars[no-1]:name,selectedCarPrice: (isPreloaded)?carPrices[no-1]:price,filePath: filePath,)));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>confirmBooking(no: no,selectedCar: (name==null)?cars[no-1]:name,selectedCarPrice: (price==null)?carPrices[no-1]:price,filePath: filePath,)));
             },
             style: ButtonStyle(),
             child: Container(

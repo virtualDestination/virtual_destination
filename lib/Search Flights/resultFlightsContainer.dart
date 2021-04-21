@@ -43,7 +43,7 @@ class flightContainer extends StatelessWidget {
           Container(
             height: size.height*0.2,
             width: size.width,
-            child: (isPreloaded)?Image.asset("assets/images/airlines$no.jpeg",
+            child: (filePath==null)?Image.asset("assets/images/airlines$no.jpeg",
             fit: BoxFit.fill,):Image.file(File(filePath),fit: BoxFit.fill,),
           ),
           Row(
@@ -52,14 +52,14 @@ class flightContainer extends StatelessWidget {
            children: [
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("${(isPreloaded)?airlines[no-1]:name}",style: TextStyle(
+               child: Text("${(name==null)?airlines[no-1]:name}",style: TextStyle(
                  fontSize: size.width*0.045,
                  fontWeight: FontWeight.bold
                ),),
              ),
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("$currency ${(isPreloaded)?flightsPrices[no-1]:price}",style: TextStyle(
+               child: Text("$currency ${(price==null)?flightsPrices[no-1]:price}",style: TextStyle(
                  fontSize: size.width*0.035
                ),),
              )
