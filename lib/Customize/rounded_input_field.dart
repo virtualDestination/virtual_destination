@@ -10,10 +10,12 @@ class RoundedInputField extends StatefulWidget {
   String stringChanged;
   final List suggestions;
   final GlobalKey kEy;
+  final FocusNode focusNode;
 
    RoundedInputField(
       {Key key,
       this.hintText,
+        this.focusNode,
       this.icon = Icons.person,
       this.stringChanged,
       this.kEy,
@@ -30,6 +32,7 @@ class _RoundedInputFieldState extends State<RoundedInputField> {
     Size size = MediaQuery.of(context).size;
     return TextFieldContainer(
         child: AutoCompleteTextField(
+          // focusNode: widget.focusNode,
           decoration: InputDecoration(
             hintText: widget.hintText,
             enabledBorder: OutlineInputBorder(

@@ -14,7 +14,7 @@ class forceMode extends StatefulWidget {
   _forceModeState createState() => _forceModeState();
 }
 
-class _forceModeState extends State<forceMode> {
+class _forceModeState extends State<forceMode> with SingleTickerProviderStateMixin{
 
   GlobalKey<AutoCompleteTextFieldState<String>> toKey = new GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<String>> fromKey = new GlobalKey();
@@ -39,6 +39,7 @@ class _forceModeState extends State<forceMode> {
                   height: size.height * 0.08,
                 ),
                 Container(
+                  height: size.height*0.1,
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                   child: RoundedInputField(
                     hintText: "From",
@@ -49,6 +50,7 @@ class _forceModeState extends State<forceMode> {
                   ),
                 ),
                 Container(
+                  height: size.height*0.1,
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                   child: RoundedInputField(
                     hintText: "To",
@@ -59,6 +61,7 @@ class _forceModeState extends State<forceMode> {
                   ),
                 ),
                 Container(
+                  height: size.height*0.1,
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                   child: RoundedInputField(
                     hintText: "Hotel",
@@ -69,6 +72,7 @@ class _forceModeState extends State<forceMode> {
                   ),
                 ),
                 Container(
+                  height: size.height*0.1,
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                   child: RoundedInputField(
                     hintText: "Car",
@@ -79,6 +83,7 @@ class _forceModeState extends State<forceMode> {
                   ),
                 ),
                 Container(
+                  height: size.height*0.1,
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                   child: RoundedInputField(
                     hintText: "Flights",
@@ -89,6 +94,7 @@ class _forceModeState extends State<forceMode> {
                   ),
                 ),
                 Container(
+                  height: size.height*0.1,
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.24),
                   child: RoundedButton(
                     text: "Submit",
