@@ -165,7 +165,7 @@ class _forceCarsState extends State<forceCars> {
                 underline: Container(
                   color: kPrimaryLightColor,
                 ),
-                items: cars.map<DropdownMenuItem>((e) {
+                items: widget.cars.map<DropdownMenuItem>((e) {
                   return DropdownMenuItem(
                     value: e,
                     child: Text(e.toString()),
@@ -231,7 +231,7 @@ class _forceCarsState extends State<forceCars> {
             ],
           ),
           TextButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> confirmBooking(no: cars.indexOf(forcedCarField)+1,)));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> confirmBooking(no: 3,)));
           }, child: Container(
             width: size.width*0.8,
             height: size.height*0.08,

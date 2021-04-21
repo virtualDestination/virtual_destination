@@ -144,7 +144,7 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
           )
         ],
       ),
-      bottomSheet: bottomSheet(hotelNo:(isForced)? (hotelsList.indexOf(forcedHotelField)+1  ): widget.hotelNo,flightNo: widget.flightNo,),
+      bottomSheet: bottomSheet(hotelNo:(isForced)? (hotelsList.indexOf(forcedHotelField)+1): widget.hotelNo,flightNo: widget.flightNo,),
     );
   }
 }
@@ -158,7 +158,7 @@ class bottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    int totalPrice = ((nights.inDays*selectedHotelPrice)+selectedFlightPrice);
+    int totalPrice = ((nights.inDays*selectedHotelPrice)+selectedFlightPrice+((isForced)?75:0));
     //print(totalPrice);
     return Container(
       width: size.width,

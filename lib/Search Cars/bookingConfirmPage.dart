@@ -183,7 +183,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${(isForced)?carPrices[cars.indexOf(forcedCarField)]:carPrice}",
+                    "$currency ${(isForced)?75:carPrice}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),

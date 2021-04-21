@@ -27,7 +27,7 @@ class _forceModeState extends State<forceMode> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-        height: size.height * 0.3,
+        height: size.height * 1,
         width: size.width,
         child: FutureBuilder(
           future: firestore.collection('lists').doc('airlines').get(),
@@ -36,7 +36,7 @@ class _forceModeState extends State<forceMode> {
             return ListView(
               children: [
                 SizedBox(
-                  height: size.height * 0.1,
+                  height: size.height * 0.08,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
@@ -63,7 +63,7 @@ class _forceModeState extends State<forceMode> {
                   child: RoundedInputField(
                     hintText: "Hotel",
                     kEy: hotelKey,
-                    suggestions: hotelsList,
+                    suggestions: snapshot.data['Hotels'],
                     icon: Icons.home,
                     stringChanged: "hotel",
                   ),
@@ -73,7 +73,7 @@ class _forceModeState extends State<forceMode> {
                   child: RoundedInputField(
                     hintText: "Car",
                     kEy: carKey,
-                    suggestions: cars,
+                    suggestions: snapshot.data['Cars'],
                     icon: Icons.home,
                     stringChanged: "car",
                   ),
@@ -84,7 +84,7 @@ class _forceModeState extends State<forceMode> {
                     hintText: "Flights",
                     kEy: flightKey,
                     icon: Icons.home,
-                    suggestions: airlines,
+                    suggestions: snapshot.data['flights'],
                     stringChanged: "flight",
                   ),
                 ),

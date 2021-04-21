@@ -191,91 +191,45 @@ class _forceFlightState extends State<forceFlight> {
           ),
           Padding(
             padding: EdgeInsets.only(left: size.width * 0.03),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: Text(
-                        "No Of Seats",
-                        style: TextStyle(
-                            fontSize: size.height * 0.024, color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(11),
-                      height: size.height * 0.06,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.black26,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: DropdownButton<int>(
-                          onChanged: (e) {
-                            setState(() {
-                              seats = e;
-                            });
-                          },
-                          value: seats,
-                          icon: Icon(Icons.arrow_drop_down),
-                          elevation: 20,
-                          style: TextStyle(
-                            color: Colors.black87,
-                          ),
-                          underline: Container(
-                            color: Colors.transparent,
-                          ),
-                          items: <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                              .map<DropdownMenuItem<int>>((int e) {
-                            return DropdownMenuItem<int>(
-                              value: e,
-                              child: Text(e.toString()),
-                            );
-                          }).toList()),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Text(
+                    "No Of Seats",
+                    style: TextStyle(
+                        fontSize: size.height * 0.024, color: Colors.black),
+                  ),
                 ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(11.0),
-                      child: Text(
-                        "Select Flight",
-                        style: TextStyle(
-                            fontSize: size.height * 0.024, color: Colors.black),
+                Container(
+                  margin: EdgeInsets.all(11),
+                  height: size.height * 0.06,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: DropdownButton<int>(
+                      onChanged: (e) {
+                        setState(() {
+                          seats = e;
+                        });
+                      },
+                      value: seats,
+                      icon: Icon(Icons.arrow_drop_down),
+                      elevation: 20,
+                      style: TextStyle(
+                        color: Colors.black87,
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(11),
-                      height: size.height * 0.06,
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.black26,
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: DropdownButton(
-                          onChanged: (e) {
-                            setState(() {
-                              flights = forcedFlightField;
-                            });
-                          },
-                          value:flights,
-                          icon: Icon(Icons.arrow_drop_down),
-                          elevation: 20,
-                          style: TextStyle(
-                            color: Colors.black87,
-                          ),
-                          underline: Container(
-                            color: Colors.transparent,
-                          ),
-                          items: airlines.map<DropdownMenuItem>((e) {
-                            return DropdownMenuItem(
-                              value: e,
-                              child: Text(e.toString()),
-                            );
-                          }).toList()),
-                    ),
-                  ],
+                      underline: Container(
+                        color: Colors.transparent,
+                      ),
+                      items: <int>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                          .map<DropdownMenuItem<int>>((int e) {
+                        return DropdownMenuItem<int>(
+                          value: e,
+                          child: Text(e.toString()),
+                        );
+                      }).toList()),
                 ),
               ],
             ),

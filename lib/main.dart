@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -10,6 +11,7 @@ import 'package:virtual_destination/Network/cities.dart';
 import 'package:virtual_destination/Notifications/push_notification_service.dart';
 import 'package:virtual_destination/Perform/travelHomePage.dart';
 import 'package:virtual_destination/home%20page/homePage.dart';
+import 'package:virtual_destination/home%20page/settings.dart';
 import 'package:virtual_destination/login/signIn.dart';
 import 'package:http/http.dart' as http;
 
@@ -41,8 +43,14 @@ String carReview = "The location of the car hire was just outside the arrival ga
 String flightsAndHotelsReview = "We got a great package deal booking our flights and hotel at the same time.The price was exceptional.On board the flight we had great leg room and free refreshments.The accommodation was lovely and the bed was very comfortable.The location was close to the shops and bars.Can't wait to go back again.⭐ ⭐ ⭐ ⭐";
 String androidToken;
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
   Future<bool> isLogedIn() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     bool isLoggedIn = sharedPreferences.getBool('logIn');
@@ -54,6 +62,52 @@ class MyApp extends StatelessWidget {
     bool isPerformMode = sharedPreferences.getBool('performance');
     return isPerformMode;
   }
+
+  Future<void> performanceMode(bool isPerform) async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      sharedPreferences.setBool('performance', isPerform);
+      isPerformance = true;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    this.initDynamicLinks();
+  }
+
+
+  void initDynamicLinks() async {
+    FirebaseDynamicLinks.instance.onLink(
+        onSuccess: (PendingDynamicLinkData dynamicLink) async {
+          final Uri deepLink = dynamicLink?.link;
+
+          if (deepLink != null) {
+            print("I am in On Link");
+            performanceMode(true);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>performHome()));
+          }
+        },
+        onError: (OnLinkErrorException e) async {
+          print('onLinkError');
+          print(e.message);
+        }
+    );
+
+    final PendingDynamicLinkData data = await FirebaseDynamicLinks.instance.getInitialLink();
+    final Uri deepLink = data?.link;
+
+    if (deepLink != null) {
+      print("I am here");
+      performanceMode(true);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>performHome()));
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

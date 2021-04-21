@@ -96,7 +96,7 @@ class _srchHotelsState extends State<srchHotels> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child:(isForced)? forcedHotelDropdown(hotels: hotels,): ToSearch(context, cities),
+                        child:(isForced)? forcedHotelDropdown(hotels: cities,): ToSearch(context, cities),
                       ),
                     ],
                   ),
@@ -162,7 +162,7 @@ class _srchHotelsState extends State<srchHotels> {
                 ),
                 peopleCount(),
                 TextButton(onPressed: (){
-                  (isForced)? Navigator.push(context, MaterialPageRoute(builder: (context)=>confirmBooking(no: hotelsList.indexOf(forcedHotelField)+1,stars: ratingSys(),))):
+                  (isForced)? Navigator.push(context, MaterialPageRoute(builder: (context)=>confirmBooking(no: 2,stars: ratingSys(),))):
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>resultPage(nights: endDate.difference(startDate),)));
                 }, child: Container(
                   width: size.width*0.8,

@@ -27,10 +27,9 @@ class _settingsState extends State<settings> {
 
 
   Future<void> performanceMode(bool isPerform) async{
-    LocalStorage sharedPreferences = LocalStorage('travel_app');
-    await sharedPreferences.ready;
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
-      sharedPreferences.setItem('performance', isPerform);
+      sharedPreferences.setBool('performance', isPerform);
     });
   }
 

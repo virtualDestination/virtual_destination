@@ -19,14 +19,14 @@ class _forcedHotelDropdownState extends State<forcedHotelDropdown> {
     return Container(
             margin: EdgeInsets.all(8),
             padding: EdgeInsets.all(8),
-            width: size.width*0.4,
+            // width: size.width*0.56,
             decoration: BoxDecoration(
                 color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
                 onChanged: (e) {
                   setState(() {
-                    hotel = forcedHotelField;
+                    hotel = forcedToField;
                   });
                 },
                 value: hotel,
@@ -38,7 +38,7 @@ class _forcedHotelDropdownState extends State<forcedHotelDropdown> {
                 underline: Container(
                   color: Colors.transparent,
                 ),
-                items: hotelsList.map<DropdownMenuItem>((e) {
+                items: widget.hotels.map<DropdownMenuItem>((e) {
                   return DropdownMenuItem(
                     value: e,
                     child: Text(e.toString()),
