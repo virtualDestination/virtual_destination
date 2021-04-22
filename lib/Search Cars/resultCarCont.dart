@@ -8,7 +8,7 @@ import 'package:virtual_destination/home%20page/settings.dart';
 List<String> cars = [
   "Hyundai","Lamborghini","Toyota Corolla",
   "Chevy surburban","Bentley continental","Mitsubishi",
-  "Porsche","Maruti","Range Rover",
+  "Porsche","Ford Focus","Range Rover",
   "VW golf"
 ];
 
