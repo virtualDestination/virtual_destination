@@ -4,18 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:virtual_destination/Customize/forcedMode.dart';
 import 'package:virtual_destination/Notifications/push_notification_service.dart';
 import 'package:virtual_destination/Perform/searchFlights.dart';
-import 'package:virtual_destination/Search%20Cars/resultCarCont.dart';
-import 'package:virtual_destination/Search%20Cars/searchResult.dart';
-import 'package:virtual_destination/Search%20Hotels/resultHotelsContainer.dart';
 import 'package:virtual_destination/home%20page/settings.dart';
 import 'package:virtual_destination/main.dart';
 
-class confirmBooking extends StatelessWidget {
-  int no,seats = 1,bags;
+class confirmBooking extends StatefulWidget {
   String selectedCar,filePath;
   int selectedCarPrice;
   String stars = "";
+  int no;
   confirmBooking({this.no,this.stars,this.selectedCar,this.selectedCarPrice,this.filePath});
+
+  @override
+  _confirmBookingState createState() => _confirmBookingState();
+}
+
+class _confirmBookingState extends State<confirmBooking> {
+  int seats = 1,bags;
+  String submit = "Check Out";
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -62,11 +68,11 @@ class confirmBooking extends StatelessWidget {
             width: size.width,
             decoration: BoxDecoration(color: Colors.white),
             // alignment: Alignment.center,
-            child: (filePath==null)?(isForced)?Text(""):Image.asset("assets/images/car$no.jpeg",fit: BoxFit.fill,):Image.file(File(filePath),fit: BoxFit.fill,),
+            child: (widget.filePath==null)?(isForced)?Text(""):Image.asset("assets/images/car${widget.no}.jpeg",fit: BoxFit.fill,):Image.file(File(widget.filePath),fit: BoxFit.fill,),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Text("${(isForced)?forcedCarField:selectedCar}",style: TextStyle(
+            child: Text("${(isForced)?forcedCarField:widget.selectedCar}",style: TextStyle(
               color: Colors.black87,
               fontSize: size.width*0.08,
               fontWeight: FontWeight.w700
@@ -136,96 +142,96 @@ class confirmBooking extends StatelessWidget {
           ),
         ],
       ),
-      bottomSheet: bottomSheet(carPrice: selectedCarPrice,selectedCar: selectedCar,),
-    );
-  }
-}
-
-class bottomSheet extends StatefulWidget {
-  int no;
-  int carPrice;
-  String selectedCar;
-
-  bottomSheet({this.no,this.carPrice,this.selectedCar});
-
-  @override
-  _bottomSheetState createState() => _bottomSheetState();
-}
-
-class _bottomSheetState extends State<bottomSheet> {
-
-
-  @override
-  Widget build(BuildContext context) {
-    String submit = "Check Out";
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width,
-      height: size.height * 0.12,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 10,
-              spreadRadius: 6)
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(
-                left: size.width * 0.03, right: 10, top: 12, bottom: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text("Per Day",
-                      style: TextStyle(fontSize: size.width * 0.05)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    "$currency ${(isForced)?75:widget.carPrice}",
-                    style: TextStyle(
-                        fontSize: size.width * 0.05,
-                        fontWeight: FontWeight.w700),
+      bottomSheet: Container(
+        width: size.width,
+        height: size.height * 0.12,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                blurRadius: 10,
+                spreadRadius: 6)
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                  left: size.width * 0.03, right: 10, top: 12, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text("Per Day",
+                        style: TextStyle(fontSize: size.width * 0.05)),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      "$currency ${(isForced)?75:widget.selectedCarPrice}",
+                      style: TextStyle(
+                          fontSize: size.width * 0.05,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextButton(
-                onPressed: () {
-                  sendingNoti noti = sendingNoti();
-                  noti.sendNoti((isForced)?forcedFromField:fromField,
-                      (isForced)?forcedToField:toField, (isForced)?forcedCarField:widget.selectedCar,"Car Trip");
-                  setState(() {
-                    submit = "✔";
-                  });
-                },
-                child: Container(
-                  width: size.width * 0.32,
-                  height: size.height * 0.09,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                      borderRadius: BorderRadius.all(Radius.circular(12))),
-                  child: Text(
-                    "$submit",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: size.width * 0.05),
-                  ),
-                )),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                  onPressed: () {
+                    sendingNoti noti = sendingNoti();
+                    noti.sendNoti((isForced)?forcedFromField:fromField,
+                        (isForced)?forcedToField:toField, (isForced)?forcedCarField:widget.selectedCar,"Car Trip");
+                    setState(() {
+                      submit = "✔";
+                    });
+                  },
+                  child: Container(
+                    width: size.width * 0.32,
+                    height: size.height * 0.09,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(12))),
+                    child: Text(
+                      "$submit",
+                      style: TextStyle(
+                          color: Colors.white, fontSize: size.width * 0.05),
+                    ),
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }
 }
+
+// class bottomSheet extends StatefulWidget {
+//   int no;
+//   int carPrice;
+//   String selectedCar;
+//
+//   bottomSheet({this.no,this.carPrice,this.selectedCar});
+//
+//   @override
+//   _bottomSheetState createState() => _bottomSheetState();
+// }
+//
+// class _bottomSheetState extends State<bottomSheet> {
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//
+//     Size size = MediaQuery.of(context).size;
+//     return ;
+//   }
+// }

@@ -26,45 +26,8 @@ class _homePageState extends State<homePage> {
   //   print("Succesfully Logged Out");
   // }
 
-  void sendNoti() async{
-    var token = await FirebaseMessaging.instance.getToken();
-
-    var headers = <String, String>{
-      'Content-Type': 'application/json',
-      'Authorization':"key=AAAAa6wdiEw:APA91bHlVitbcfD3dLXTdQIUQqQExfAkiGBFmOxO3YmBZH4mpttVwsvDkCoY4Ldz1LDp7AxrDFrW9lwxPVZEouT8aPhRSKuuCy8RHSfKuy3HLJMiLb60Bo2tFOUY9he7HOss3IUTCIPL"
-    };
-
-
-    var bodyPal = {
-      "to": "/topics/travel",
-      "data": {
-        "clickaction": "FLUTTERNOTIFICATIONCLICK",
-        "id": "1",
-        "status": "done"
-      },
-      "priority": "high",
-      "notification": {
-        "body": "Your trip to hello World",
-        "title": "typeOfTrip to in service."
-      },
-    };
-
-    Future.delayed(Duration(seconds: countdown),() async {
-      Response response = await Dio().post(
-        "https://fcm.googleapis.com/fcm/send",
-        options: Options(
-            headers: headers,
-            followRedirects: false,
-            contentType: 'application/json'
-        ),
-        data: bodyPal,
-      );
-      print(response.data.toString());
-    });
-  }
-
-  void _launchURL() async =>
-      await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+  void _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
 
   @override
   void initState() {
@@ -97,7 +60,23 @@ class _homePageState extends State<homePage> {
           centerTitle: true,
           leading: FocusedMenuHolder(child: Icon(Icons.info),onPressed: (){},
             menuItems: [
-              FocusedMenuItem(title: Text("Help"), onPressed: (){}),
+              FocusedMenuItem(title: Text("Help"), onPressed: (){
+                showDialog(context: context, builder: (context){
+                  return AlertDialog(
+                    contentPadding: EdgeInsets.all(20),
+                    elevation: 8,
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("If you have any questions about virtual destination please contact me by email. "),
+                        TextButton(onPressed: (){_launchURL("mailto:Briankennedymagician@gmail.com");}, child: Text("Briankennedymagician@gmail.com"))
+                      ],
+                    ),
+                  );
+                });
+              }),
               FocusedMenuItem(title: Text("About Virtual Destination"), onPressed: (){
                 showDialog(context: context, builder: (context){
                   return AlertDialog(
@@ -111,7 +90,7 @@ class _homePageState extends State<homePage> {
                         Text("Created by Brian kennedy   App developed by ShellCode Solutions\n"),
                         Text("To share ideas and learn the latest tips and tricks with Virtual destination please join our closed"),
                         Text(""),
-                        Container(width:124,child: TextButton(onPressed: _launchURL,child: Container(child: Row(
+                        Container(width:124,child: TextButton(onPressed: (){_launchURL(_url);},child: Container(child: Row(
                           children: [
                             Text("F"),
                             Text("a"),
@@ -134,12 +113,7 @@ class _homePageState extends State<homePage> {
                   );
                 });
               }),
-              FocusedMenuItem(title: Text("Read Instruction"), onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>pdfViewer()));}),
-              // FocusedMenuItem(title: Text("Log Out"), onPressed: (){
-              //   isLoggedIn = false;
-              //   logOut(false);
-              //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignIn()));
-              // })
+              FocusedMenuItem(title: Text("Read Instruction"), onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Material(child: pdfViewer())));}),
             ],),
           actions: [
             IconButton(icon: Icon(Icons.settings), onPressed: (){

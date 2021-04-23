@@ -22,8 +22,11 @@ class flight_and_hotels_booking_confirm extends StatefulWidget {
 }
 
 class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_booking_confirm> {
+  Duration nights = endDate.difference(startDate);
+  String submit = "Check Out";
   @override
   Widget build(BuildContext context) {
+    int totalPrice = ((nights.inDays*selectedHotelPrice)+selectedFlightPrice+((isForced)?75:0));
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       // backgroundColor: Color(0xFFb9fffc),
@@ -144,96 +147,96 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
           )
         ],
       ),
-      bottomSheet: bottomSheet(hotelNo:(isForced)? (hotelsList.indexOf(forcedHotelField)+1): widget.hotelNo,flightNo: widget.flightNo,),
-    );
-  }
-}
-
-
-
-class bottomSheet extends StatefulWidget {
-  int hotelNo,flightNo;
-  bottomSheet({this.flightNo,this.hotelNo});
-
-  @override
-  _bottomSheetState createState() => _bottomSheetState();
-}
-
-class _bottomSheetState extends State<bottomSheet> {
-  Duration nights = endDate.difference(startDate);
-
-  @override
-  Widget build(BuildContext context) {
-    String submit = "Check Out";
-    Size size = MediaQuery.of(context).size;
-    int totalPrice = ((nights.inDays*selectedHotelPrice)+selectedFlightPrice+((isForced)?75:0));
-    //print(totalPrice);
-    return Container(
-      width: size.width,
-      height: size.height * 0.12,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 10,
-              spreadRadius: 6)
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: EdgeInsets.only(
-                left: size.width * 0.03, right: 10, top: 12, bottom: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text("Trip Total",
-                      style: TextStyle(fontSize: size.width * 0.05)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    "$currency $totalPrice",
-                    style: TextStyle(
-                        fontSize: size.width * 0.05,
-                        fontWeight: FontWeight.w700),
+      bottomSheet: Container(
+        width: size.width,
+        height: size.height * 0.12,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                blurRadius: 10,
+                spreadRadius: 6)
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                  left: size.width * 0.03, right: 10, top: 12, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text("Trip Total",
+                        style: TextStyle(fontSize: size.width * 0.05)),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      "$currency $totalPrice",
+                      style: TextStyle(
+                          fontSize: size.width * 0.05,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextButton(
-                onPressed: () {
-                  sendingNoti noti = sendingNoti();
-                  noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?(forcedFlightField+"  "+forcedHotelField):(selectedAirline+"  "+selectedHotel),"Flight & Stay");
-                  setState(() {
-                    submit = "✔";
-                  });
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                  onPressed: () {
+                    sendingNoti noti = sendingNoti();
+                    //noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?(forcedFlightField+"  "+forcedHotelField):(selectedAirline+"  "+selectedHotel),"Flight & Stay");
+                    setState(() {
+                      submit = "✔";
+                    });
                   },
-                child: Container(
-                  width: size.width * 0.32,
-                  height: size.height * 0.09,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                      borderRadius: BorderRadius.all(Radius.circular(12))),
-                  child: Text(
-                    "$submit",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: size.width * 0.05),
-                  ),
-                )),
-          )
-        ],
+                  child: Container(
+                    width: size.width * 0.32,
+                    height: size.height * 0.09,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(12))),
+                    child: Text(
+                      "$submit",
+                      style: TextStyle(
+                          color: Colors.white, fontSize: size.width * 0.05),
+                    ),
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }
 }
+
+
+
+// class bottomSheet extends StatefulWidget {
+//   int hotelNo,flightNo;
+//   bottomSheet({this.flightNo,this.hotelNo});
+//
+//   @override
+//   _bottomSheetState createState() => _bottomSheetState();
+// }
+//
+// class _bottomSheetState extends State<bottomSheet> {
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     String submit = "Check Out";
+//     Size size = MediaQuery.of(context).size;
+//
+//     //print(totalPrice);
+//     return ;
+//   }
+// }
