@@ -62,7 +62,7 @@ class confirmBooking extends StatelessWidget {
             width: size.width,
             decoration: BoxDecoration(color: Colors.white),
             // alignment: Alignment.center,
-            child: (filePath==null)?Image.asset("assets/images/car$no.jpeg",fit: BoxFit.fill,):Image.file(File(filePath),fit: BoxFit.fill,),
+            child: (filePath==null)?(isForced)?Text(""):Image.asset("assets/images/car$no.jpeg",fit: BoxFit.fill,):Image.file(File(filePath),fit: BoxFit.fill,),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
@@ -115,13 +115,10 @@ class confirmBooking extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Reviews",style: TextStyle(
-                      color: Colors.black,
-                      fontSize: size.width*0.06,
-                    ),),
-                  ),
+                  Text("Reviews",style: TextStyle(
+                    color: Colors.black,
+                    fontSize: size.width*0.06,
+                  ),),
                   Text("$carReview",style: TextStyle(
                     color: Colors.black54,
                     fontSize: size.width*0.043,
@@ -197,8 +194,8 @@ class bottomSheet extends StatelessWidget {
             child: TextButton(
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
-                  noti.sendNoti("Car Trip",
-                      (isForced)?forcedToField:toField, (isForced)?forcedCarField:selectedCar);
+                  noti.sendNoti((isForced)?forcedFromField:fromField,
+                      (isForced)?forcedToField:toField, (isForced)?forcedCarField:selectedCar,"Car Trip");
                 },
                 child: Container(
                   width: size.width * 0.32,

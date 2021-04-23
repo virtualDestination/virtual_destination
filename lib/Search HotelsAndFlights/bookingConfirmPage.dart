@@ -125,7 +125,7 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
             ),
           ):Text(""),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(right:8.0),
             child: Text("Reviews",style:TextStyle(
               color: Colors.black87,
               fontSize: size.width*0.065,
@@ -205,7 +205,7 @@ class bottomSheet extends StatelessWidget {
             child: TextButton(
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
-                  noti.sendNoti("Flight & Stay", (isForced)?forcedToField:toField, (isForced)?(forcedFlightField+"  "+forcedHotelField):(selectedAirline+"  "+selectedHotel));
+                  noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?(forcedFlightField+"  "+forcedHotelField):(selectedAirline+"  "+selectedHotel),"Flight & Stay");
                 },
                 child: Container(
                   width: size.width * 0.32,

@@ -58,7 +58,7 @@ class confirmBooking extends StatelessWidget {
             width: size.width,
             decoration: BoxDecoration(color: Colors.white),
             // alignment: Alignment.center,
-            child: (filePath==null)?Image.asset("assets/images/hotel$no.jpeg",fit: BoxFit.fill,):
+            child: (filePath==null)?(isForced)?Text(""):Image.asset("assets/images/hotel$no.jpeg",fit: BoxFit.fill,):
                 Image.file(File(filePath),fit: BoxFit.fill,)
           ),
           Padding(
@@ -99,13 +99,10 @@ class confirmBooking extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Reviews",style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: size.width*0.06,
-                    ),),
-                  ),
+                  Text("Reviews",style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: size.width*0.06,
+                  ),),
                   Text("$hotelReview",style: TextStyle(
                     color: Colors.black54,
                     fontSize: size.width*0.043,
@@ -180,7 +177,7 @@ class bottomSheet extends StatelessWidget {
             child: TextButton(
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
-                  noti.sendNoti("Hotel Stay", (isForced)?forcedToField:toField, (isForced)?forcedHotelField:(name==null)?hotelsList[no-1]:name);
+                  noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?forcedHotelField:(name==null)?hotelsList[no-1]:name,"Hotel Stay");
                 },
                 child: Container(
                   width: size.width * 0.32,

@@ -29,14 +29,17 @@ class _listOfCitiesState extends State<listOfCities> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List _cities = snapshot.data['Cities'];
-                return ListView.separated(
-                    itemBuilder: (context, index) {
-                      return itemCard(_cities[index], context);
-                    },
-                    separatorBuilder: (context, index) => SizedBox(
-                          height: size.height * 0.02,
-                        ),
-                    itemCount: _cities.length);
+                return Scrollbar(
+                  thickness: 10,
+                  child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        return itemCard(_cities[index], context);
+                      },
+                      separatorBuilder: (context, index) => SizedBox(
+                            height: size.height * 0.02,
+                          ),
+                      itemCount: _cities.length),
+                );
               } else {
                 return Center(
                   child: CircularProgressIndicator(),
@@ -51,7 +54,7 @@ class _listOfCitiesState extends State<listOfCities> {
           right: 10,
           child: Container(
             child: FloatingActionButton(
-              backgroundColor: kPrimaryColor,
+              backgroundColor: Colors.green,
               child: Icon(Icons.add,),
               onPressed: (){
                 showDialog(context: context, builder: (context){
@@ -98,7 +101,7 @@ class _listOfCitiesState extends State<listOfCities> {
       padding:
           EdgeInsets.symmetric(horizontal: 15, vertical: size.height * 0.02),
       decoration: BoxDecoration(
-          border: Border.fromBorderSide(BorderSide(color: Colors.black54)),
+          border: Border.fromBorderSide(BorderSide(color: Colors.black26)),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,12 +112,12 @@ class _listOfCitiesState extends State<listOfCities> {
             style: TextStyle(
                 fontSize: size.height * 0.02,
                 fontWeight: FontWeight.w500,
-                color: Colors.black87),
+                color: Colors.black54),
           ),
           IconButton(
               icon: Icon(
                 Icons.delete,
-                color: kPrimaryLightColor,
+                color: Colors.green,
               ),
               onPressed: () {
                 firestore.collection('lists').doc('airlines').update({

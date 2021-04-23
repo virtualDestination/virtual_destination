@@ -12,7 +12,7 @@ import 'package:virtual_destination/randomTimeGenerator.dart';
 int selectedFlightPrice;
 
 List<String> airlines = <String>[
-    "American Airlines","British Ailines","Delta Airlines",
+    "American Airlines","British Airlines","Delta Airlines",
     "RyanAir","Fly Emirates","Etihad Airways",
     "EasyJet","Lufthansa"
   ];

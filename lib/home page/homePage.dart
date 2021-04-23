@@ -1,20 +1,15 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
-import 'package:localstorage/localstorage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:virtual_destination/Customize/mainCustomPage.dart';
 import 'package:virtual_destination/Perform/travelHomePage.dart';
-import 'package:virtual_destination/colors.dart';
+import 'package:virtual_destination/home%20page/readInstructions.dart';
 import 'package:virtual_destination/home%20page/rounded_button.dart';
 import 'package:virtual_destination/home%20page/settings.dart';
 import 'package:virtual_destination/home%20page/videoTut.dart';
-import 'package:virtual_destination/login/signIn.dart';
-import 'package:virtual_destination/main.dart';
-import 'package:http/http.dart' as http;
 
 class homePage extends StatefulWidget {
   @override
@@ -22,12 +17,14 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
+  String _url = "https://www.facebook.com/groups/315564823431585/";
 
-  void logOut(bool value) async{
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setBool('logIn', value);
-    print("Succesfully Logged Out");
-  }
+
+  // void logOut(bool value) async{
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   sharedPreferences.setBool('logIn', value);
+  //   print("Succesfully Logged Out");
+  // }
 
   void sendNoti() async{
     var token = await FirebaseMessaging.instance.getToken();
@@ -64,15 +61,10 @@ class _homePageState extends State<homePage> {
       );
       print(response.data.toString());
     });
-
-
-    // FirebaseMessaging.instance.sendMessage(
-    //   to: androidToken,
-    //     data: <String,String>{
-    //   "title":"Hello World",
-    //   "body":"App Message"
-    // }).then((value) => print("Sent Message"));
   }
+
+  void _launchURL() async =>
+      await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 
   @override
   void initState() {
@@ -106,13 +98,48 @@ class _homePageState extends State<homePage> {
           leading: FocusedMenuHolder(child: Icon(Icons.info),onPressed: (){},
             menuItems: [
               FocusedMenuItem(title: Text("Help"), onPressed: (){}),
-              FocusedMenuItem(title: Text("About Virtual Destination"), onPressed: (){}),
-              FocusedMenuItem(title: Text("Read Instruction"), onPressed: (){}),
-              FocusedMenuItem(title: Text("Log Out"), onPressed: (){
-                isLoggedIn = false;
-                logOut(false);
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignIn()));
-              })
+              FocusedMenuItem(title: Text("About Virtual Destination"), onPressed: (){
+                showDialog(context: context, builder: (context){
+                  return AlertDialog(
+                    contentPadding: EdgeInsets.all(20),
+                    elevation: 10,
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("Created by Brian kennedy   App developed by ShellCode Solutions\n"),
+                        Text("To share ideas and learn the latest tips and tricks with Virtual destination please join our closed"),
+                        Text(""),
+                        Container(width:124,child: TextButton(onPressed: _launchURL,child: Container(child: Row(
+                          children: [
+                            Text("F"),
+                            Text("a"),
+                            Text("c"),
+                            Text("e"),
+                            Text("b"),
+                            Text("o"),
+                            Text("o"),
+                            Text("k"),
+                            Text(" "),
+                            Text("G"),
+                            Text("r"),
+                            Text("o"),
+                            Text("u"),
+                            Text("p")
+                          ],
+                        ),),))
+                      ],
+                    ),
+                  );
+                });
+              }),
+              FocusedMenuItem(title: Text("Read Instruction"), onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>pdfViewer()));}),
+              // FocusedMenuItem(title: Text("Log Out"), onPressed: (){
+              //   isLoggedIn = false;
+              //   logOut(false);
+              //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignIn()));
+              // })
             ],),
           actions: [
             IconButton(icon: Icon(Icons.settings), onPressed: (){

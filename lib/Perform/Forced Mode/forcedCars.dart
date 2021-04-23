@@ -144,13 +144,14 @@ class _forceCarsState extends State<forceCars> {
                   ),
                 ),
           Container(
-
+            width: size.width*0.53,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(22)),
               color: Colors.black26,
             ),
             padding: EdgeInsets.all(10),
             child: DropdownButton(
+              isExpanded: true,
                 onChanged: (e) {
                   setState(() {
                     car = forcedCarField;
@@ -172,63 +173,66 @@ class _forceCarsState extends State<forceCars> {
                   );
                 }).toList()),
           ),
-          Row(
-            children: [
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Start Date"),
-                    TextButton(
-                        onPressed: _startDatePicker,
-                        child: Container(
-                          width: size.width * 0.4,
-                          height: size.height * 0.08,
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          margin: EdgeInsets.symmetric(vertical: 12),
-                          decoration: BoxDecoration(
-                              color: Colors.black26,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          child: Center(
-                              child: Text(startDate
-                                      .toIso8601String()
-                                      .substring(0, 10) +
-                                  " at " +
-                                  startDate.toString().substring(
-                                      12, startDate.toString().length - 4))),
-                        ),
-                        style: TextButton.styleFrom(primary: Colors.black87)),
-                  ],
+          Padding(
+            padding: const EdgeInsets.only(top:8.0),
+            child: Row(
+              children: [
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Start Date"),
+                      TextButton(
+                          onPressed: _startDatePicker,
+                          child: Container(
+                            width: size.width * 0.4,
+                            height: size.height * 0.08,
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            margin: EdgeInsets.symmetric(vertical: 12),
+                            decoration: BoxDecoration(
+                                color: Colors.black26,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            child: Center(
+                                child: Text(startDate
+                                        .toIso8601String()
+                                        .substring(0, 10) +
+                                    " at " +
+                                    startDate.toString().substring(
+                                        12, startDate.toString().length - 4))),
+                          ),
+                          style: TextButton.styleFrom(primary: Colors.black87)),
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text("End Date"),
-                    TextButton(
-                        onPressed: _endDatePicker,
-                        child: Container(
-                          width: size.width * 0.4,
-                          height: size.height * 0.08,
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          margin: EdgeInsets.symmetric(vertical: 12),
-                          decoration: BoxDecoration(
-                              color: Colors.black26,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          child: Center(
-                              child: Text(
-                                  endDate.toIso8601String().substring(0, 10) +
-                                      " at " +
-                                      endDate.toString().substring(
-                                          12, endDate.toString().length - 4))),
-                        ),
-                        style: TextButton.styleFrom(primary: Colors.black87)),
-                  ],
+                Container(
+                  child: Column(
+                    children: [
+                      Text("End Date"),
+                      TextButton(
+                          onPressed: _endDatePicker,
+                          child: Container(
+                            width: size.width * 0.4,
+                            height: size.height * 0.08,
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            margin: EdgeInsets.symmetric(vertical: 12),
+                            decoration: BoxDecoration(
+                                color: Colors.black26,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            child: Center(
+                                child: Text(
+                                    endDate.toIso8601String().substring(0, 10) +
+                                        " at " +
+                                        endDate.toString().substring(
+                                            12, endDate.toString().length - 4))),
+                          ),
+                          style: TextButton.styleFrom(primary: Colors.black87)),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           TextButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=> confirmBooking(no: 3,)));
@@ -247,6 +251,9 @@ class _forceCarsState extends State<forceCars> {
               ),),
             ),
           )),
+          SizedBox(
+            height: size.height*0.04,
+          ),
           (isForced)? tripContainer(3) :Text("")
         ],
       ),
@@ -263,7 +270,7 @@ class _forceCarsState extends State<forceCars> {
         border: Border.all(color: Colors.purpleAccent[400]),
         borderRadius: BorderRadius.all(Radius.circular(10))
       ),
-      margin: EdgeInsets.symmetric(horizontal: size.width*0.06,vertical: size.height*0.0),
+      margin: EdgeInsets.symmetric(horizontal: size.width*0.02,vertical: size.height*0.0),
       padding: EdgeInsets.all(5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

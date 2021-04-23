@@ -32,14 +32,16 @@ class _airlinesListState extends State<airlinesList> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List _cities = snapshot.data['flights'];
-                return ListView.separated(
-                    itemBuilder: (context, index) {
-                      return itemCard(_cities[index], context);
-                    },
-                    separatorBuilder: (context, index) => SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    itemCount: _cities.length);
+                return Scrollbar(
+                  child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        return itemCard(_cities[index], context);
+                      },
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: size.height * 0.02,
+                      ),
+                      itemCount: _cities.length),
+                );
               } else {
                 return Center(
                   child: CircularProgressIndicator(),
@@ -54,7 +56,7 @@ class _airlinesListState extends State<airlinesList> {
           right: 10,
           child: Container(
             child: FloatingActionButton(
-              backgroundColor: kPrimaryColor,
+              backgroundColor: Colors.green,
               child: Icon(Icons.add,),
               onPressed: (){
                 showDialog(context: context, builder: (context){
@@ -103,7 +105,7 @@ class _airlinesListState extends State<airlinesList> {
       padding:
       EdgeInsets.symmetric(horizontal: 15, vertical: size.height * 0.02),
       decoration: BoxDecoration(
-          border: Border.fromBorderSide(BorderSide(color: Colors.black54)),
+          border: Border.fromBorderSide(BorderSide(color: Colors.black26)),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,12 +116,12 @@ class _airlinesListState extends State<airlinesList> {
             style: TextStyle(
                 fontSize: size.height * 0.02,
                 fontWeight: FontWeight.w500,
-                color: Colors.black87),
+                color: Colors.black54),
           ),
           IconButton(
               icon: Icon(
                 Icons.delete,
-                color: kPrimaryLightColor,
+                color: Colors.green,
               ),
               onPressed: () {
                 firestore.collection('lists').doc('airlines').update({

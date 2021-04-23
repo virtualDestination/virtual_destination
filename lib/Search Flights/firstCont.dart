@@ -87,7 +87,7 @@ class firstContainer extends StatelessWidget {
                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                      children: [
                        Container(
-                         height: size.height*0.08,
+                         height: size.height*0.1,
                          padding: EdgeInsets.all(size.width*0.02),
                          child: Column(
                            children: [
@@ -95,7 +95,7 @@ class firstContainer extends StatelessWidget {
                                color: Colors.black87
                              ),),
                              Text("${startDate.toString().substring(0,10)}",style: TextStyle(
-                               color: Colors.white
+                               color: Colors.black87
                              ),)
                            ],
                          ),

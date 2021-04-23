@@ -86,6 +86,7 @@ class _srchHotelsState extends State<srchHotels> {
                 Container(
                   height: size.height*0.2,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -94,10 +95,7 @@ class _srchHotelsState extends State<srchHotels> {
                           style: TextStyle(fontSize: size.width * 0.04),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child:(isForced)? forcedHotelDropdown(hotels: cities,): ToSearch(context, cities),
-                      ),
+                      (isForced)? forcedHotelDropdown(hotels: cities,): ToSearch(context, cities),
                     ],
                   ),
                 ),

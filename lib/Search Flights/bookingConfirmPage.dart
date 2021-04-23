@@ -160,7 +160,7 @@ class bottomSheet extends StatelessWidget {
             child: TextButton(
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
-                  noti.sendNoti("Flight", (isForced)?forcedToField:toField, (isForced)?forcedFlightField:(name==null)?airlines[no-1]:name);
+                  noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?forcedFlightField:(name==null)?airlines[no-1]:name,"Flight");
                 },
                 child: Container(
                   width: size.width * 0.32,

@@ -4,7 +4,7 @@ import 'package:virtual_destination/home%20page/settings.dart';
 
 class sendingNoti{
 
-  void sendNoti(String typeOfTrip,String destination,String service) async{
+  void sendNoti(String departure,String destination,String service,String typeOfTrip) async{
     var token = await FirebaseMessaging.instance.getToken();
 
     var headers = <String, String>{
@@ -23,7 +23,7 @@ class sendingNoti{
       "priority": "high",
       "notification": {
         "title": "Your $typeOfTrip",
-        "body": "$typeOfTrip to $destination in $service."
+        "body": "$departure to $destination with $service."
       },
     };
 

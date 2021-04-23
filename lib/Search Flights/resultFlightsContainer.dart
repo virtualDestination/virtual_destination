@@ -9,7 +9,7 @@ import 'package:virtual_destination/randomTimeGenerator.dart';
 List<int> flightsPrices = <int>[459,450,599,386,349,375,425,549,559,649];
 
 List<String> airlines = <String>[
-    "American Airlines","British Ailines","Delta Airlines",
+    "American Airlines","British Airlines","Delta Airlines",
     "RyanAir","Fly Emirates","Etihad Airways",
     "EasyJet","Lufthansa"
   ];

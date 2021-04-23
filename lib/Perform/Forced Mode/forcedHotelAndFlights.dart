@@ -13,22 +13,39 @@ import 'package:virtual_destination/Search%20HotelsAndFlights/searchHotelResults
 import 'package:virtual_destination/Search%20HotelsAndFlights/searchResult.dart';
 import '../../colors.dart';
 
-List<int> hotelPrices = <int>[99,79,59,76,85,119,199,129,220,196];
-List<int> flightsPrices = <int>[459,450,599,386,349,375,425,549,559,649];
-List<String> airlines = <String>[
-  "American Airlines","British Ailines","Delta Airlines",
-  "RyanAir","Fly Emirates","Etihad Airways",
-  "EasyJet","Lufthansa"
+List<int> hotelPrices = <int>[99, 79, 59, 76, 85, 119, 199, 129, 220, 196];
+List<int> flightsPrices = <int>[
+  459,
+  450,
+  599,
+  386,
+  349,
+  375,
+  425,
+  549,
+  559,
+  649
 ];
+List<String> airlines = <String>[
+  "American Airlines",
+  "British Ailines",
+  "Delta Airlines",
+  "RyanAir",
+  "Fly Emirates",
+  "Etihad Airways",
+  "EasyJet",
+  "Lufthansa"
+];
+
 class forceFlightAndHotels extends StatefulWidget {
-  List Cities,flights,hotels,cars;
-  forceFlightAndHotels({this.Cities,this.flights,this.hotels,this.cars});
+  List Cities, flights, hotels, cars;
+  forceFlightAndHotels({this.Cities, this.flights, this.hotels, this.cars});
   @override
   _forceFlightAndHotelsState createState() => _forceFlightAndHotelsState();
 }
 
 class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
- String fromCity, toCity, flights,hotels,car;
+  String fromCity, toCity, flights, hotels, car;
   int bags = 0, seats = 0;
 
   _startDatePicker() async {
@@ -85,16 +102,19 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
           Container(
             margin: EdgeInsets.all(8),
             padding: EdgeInsets.all(8),
+            height: size.height * 0.07,
+            width: size.width * 1,
             decoration: BoxDecoration(
                 color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
+              isExpanded: true,
                 onChanged: (e) {
                   setState(() {
                     fromCity = forcedFromField;
                   });
                 },
-                value:fromCity,
+                value: fromCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
@@ -120,16 +140,19 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
           Container(
             margin: EdgeInsets.all(7),
             padding: EdgeInsets.all(7),
+            height: size.height * 0.07,
+            width: size.width * 1,
             decoration: BoxDecoration(
                 color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(22))),
             child: DropdownButton(
+                isExpanded: true,
                 onChanged: (e) {
                   setState(() {
                     toCity = forcedToField;
                   });
                 },
-                value:toCity,
+                value: toCity,
                 icon: Icon(Icons.arrow_drop_down),
                 elevation: 20,
                 style: TextStyle(
@@ -145,58 +168,60 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                   );
                 }).toList()),
           ),
-
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(left:12.0),
+                padding: EdgeInsets.only(left: 12.0),
                 child: Text("Select Hotel"),
               ),
               Container(
-                          margin: EdgeInsets.all(11),
-                          height: size.height * 0.06,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              color: Colors.black26,
-                              borderRadius: BorderRadius.all(Radius.circular(20))),
-                          child: DropdownButton(
-                              onChanged: (e) {
-                                setState(() {
-                                  hotels = forcedHotelField;
-                                });
-                              },
-                              value:hotels,
-                              icon: Icon(Icons.arrow_drop_down),
-                              elevation: 20,
-                              style: TextStyle(
-                                color: Colors.black87,
-                              ),
-                              underline: Container(
-                                color: Colors.transparent,
-                              ),
-                              items: widget.hotels
-                                  .map<DropdownMenuItem>(( e) {
-                                return DropdownMenuItem(
-                                  value: e,
-                                  child: Text(e.toString()),
-                                );
-                              }).toList()),
-                        ),
+                width: size.width * 1,
+                margin: EdgeInsets.all(11),
+                height: size.height * 0.07,
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Colors.black26,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: DropdownButton(
+                    isExpanded: true,
+                    onChanged: (e) {
+                      setState(() {
+                        hotels = forcedHotelField;
+                      });
+                    },
+                    value: hotels,
+                    icon: Icon(Icons.arrow_drop_down),
+                    elevation: 20,
+                    style: TextStyle(
+                      color: Colors.black87,
+                    ),
+                    underline: Container(
+                      color: Colors.transparent,
+                    ),
+                    items: widget.hotels.map<DropdownMenuItem>((e) {
+                      return DropdownMenuItem(
+                        value: e,
+                        child: Text(e.toString()),
+                      );
+                    }).toList()),
+              ),
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(left:12.0),
+            padding: EdgeInsets.only(left: 12.0),
             child: Text("Select Car"),
           ),
           Container(
             margin: EdgeInsets.all(11),
-            height: size.height * 0.06,
+            height: size.height * 0.07,
+            width: size.width * 1,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: Colors.black26,
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             child: DropdownButton(
+              isExpanded: true,
                 onChanged: (e) {
                   setState(() {
                     car = forcedCarField;
@@ -211,8 +236,7 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
                 underline: Container(
                   color: Colors.transparent,
                 ),
-                items: widget.cars
-                    .map<DropdownMenuItem>(( e) {
+                items: widget.cars.map<DropdownMenuItem>((e) {
                   return DropdownMenuItem(
                     value: e,
                     child: Text(e.toString()),
@@ -276,7 +300,6 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
               ),
             ],
           ),
-
           Padding(
             padding: EdgeInsets.only(left: size.width * 0.03),
             child: Column(
@@ -322,35 +345,39 @@ class _forceFlightAndHotelsState extends State<forceFlightAndHotels> {
               ],
             ),
           ),
-          TextButton(onPressed: (){
-            selectedHotelPrice = 125;
-            selectedFlightPrice = 499;
-            selectedAirline = forcedFlightField;
-            selectedHotel = forcedHotelField;
-            Navigator.push(context, MaterialPageRoute(builder:
-                (context)=> flight_and_hotels_booking_confirm()));
-            }, child: Container(
-            width: size.width*0.8,
-            height: size.height*0.08,
-            decoration: BoxDecoration(
-                color: Colors.black87,
-                borderRadius: BorderRadius.all(Radius.circular(35))
-            ),
-            margin: EdgeInsets.symmetric(horizontal: size.width*0.08),
-            child: Center(
-              child: Text("Search",textAlign: TextAlign.center,style: TextStyle(
-                  color: Colors.white,
-                  fontSize: size.width*0.06
-              ),),
-            ),
-          ))
+          TextButton(
+              onPressed: () {
+                selectedHotelPrice = 125;
+                selectedFlightPrice = 499;
+                selectedAirline = forcedFlightField;
+                selectedHotel = forcedHotelField;
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            flight_and_hotels_booking_confirm()));
+              },
+              child: Container(
+                width: size.width * 0.8,
+                height: size.height * 0.08,
+                decoration: BoxDecoration(
+                    color: Colors.black87,
+                    borderRadius: BorderRadius.all(Radius.circular(35))),
+                margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
+                child: Center(
+                  child: Text(
+                    "Search",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white, fontSize: size.width * 0.06),
+                  ),
+                ),
+              ))
         ],
       ),
     );
   }
 }
-
-
 
 class forcedPeopleCount extends StatefulWidget {
   int bags, seats;

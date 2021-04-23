@@ -15,6 +15,10 @@ class forceMode extends StatefulWidget {
 }
 
 class _forceModeState extends State<forceMode> with SingleTickerProviderStateMixin{
+  AnimationController _controller;
+  Animation _animation;
+
+  FocusNode _focusNode = FocusNode();
 
   GlobalKey<AutoCompleteTextFieldState<String>> toKey = new GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<String>> fromKey = new GlobalKey();
@@ -22,6 +26,25 @@ class _forceModeState extends State<forceMode> with SingleTickerProviderStateMix
   GlobalKey<AutoCompleteTextFieldState<String>> carKey = new GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<String>> flightKey = new GlobalKey();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _animation = Tween(begin: 300.0, end: 50.0).animate(_controller)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _controller.forward();
+      } else {
+        _controller.reverse();
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +59,7 @@ class _forceModeState extends State<forceMode> with SingleTickerProviderStateMix
             return ListView(
               children: [
                 SizedBox(
-                  height: size.height * 0.08,
+                  height: size.height * 0.001,
                 ),
                 Container(
                   height: size.height*0.1,
@@ -86,6 +109,7 @@ class _forceModeState extends State<forceMode> with SingleTickerProviderStateMix
                   height: size.height*0.1,
                   margin: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                   child: RoundedInputField(
+                    focusNode: _focusNode,
                     hintText: "Flights",
                     kEy: flightKey,
                     icon: Icons.home,

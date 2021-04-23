@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtual_destination/Perform/searchHotelsAndFlights.dart';
 import 'package:virtual_destination/Perform/searchFlights.dart';
 import 'package:virtual_destination/Perform/searchCars.dart';
@@ -29,12 +30,11 @@ class _performHomeState extends State<performHome> {
   }
 
   Future<void> isPerform() async{
-    LocalStorage sharedPreferences = LocalStorage('travel_app');
-    await sharedPreferences.ready;
-    if(sharedPreferences.getItem('performance')==null){
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if(sharedPreferences.getBool('performance')==null){
       Navigator.pop(context);
     }else{
-      if(sharedPreferences.getItem('performance')==true){
+      if(sharedPreferences.getBool('performance')==true){
         print("Nothing");
       }else{
         Navigator.pop(context);
@@ -88,7 +88,7 @@ class _performHomeState extends State<performHome> {
           ),
           Container(
             // width: size.width,
-            height: (isForced)?size.height*1.1:size.height*0.78,
+            height: (isForced)?size.height*1.25:size.height*0.78,
             child: PageView(
               controller: _pageController,
               physics: NeverScrollableScrollPhysics(),

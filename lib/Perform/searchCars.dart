@@ -63,8 +63,8 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -103,6 +103,7 @@ class _srch_Hotels_FlightsState extends State<srch_Hotels_Flights> {
                     Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+
                         children: [
                           Text("Start Date"),
                           TextButton(
