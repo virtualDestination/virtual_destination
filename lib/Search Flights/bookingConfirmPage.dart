@@ -108,12 +108,22 @@ class confirmBooking extends StatelessWidget {
   }
 }
 
-class bottomSheet extends StatelessWidget {
+class bottomSheet extends StatefulWidget {
   int no,price;
   String name;
+
   bottomSheet({this.no,this.price,this.name});
+
+  @override
+  _bottomSheetState createState() => _bottomSheetState();
+}
+
+class _bottomSheetState extends State<bottomSheet> {
+
+
   @override
   Widget build(BuildContext context) {
+    String submit = "Check Out";
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
@@ -146,7 +156,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${(price==null)?((isForced)?499:flightsPrices[no-1]):price}",
+                    "$currency ${(widget.price==null)?((isForced)?499:flightsPrices[widget.no-1]):widget.price}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),
@@ -155,27 +165,27 @@ class bottomSheet extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextButton(
-                onPressed: () {
-                  sendingNoti noti = sendingNoti();
-                  noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?forcedFlightField:(name==null)?airlines[no-1]:name,"Flight");
+          TextButton(
+              onPressed: () {
+                sendingNoti noti = sendingNoti();
+                //noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?forcedFlightField:(widget.name==null)?airlines[widget.no-1]:widget.name,"Flight");
+                setState(() {
+                  submit = "✔";
+                });
                 },
-                child: Container(
-                  width: size.width * 0.32,
-                  height: size.height * 0.09,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.purpleAccent,
-                      borderRadius: BorderRadius.all(Radius.circular(12))),
-                  child: Text(
-                    "Check Out",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: size.width * 0.05),
-                  ),
-                )),
-          )
+              child: Container(
+                width: size.width * 0.32,
+                height: size.height * 0.09,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: Colors.purpleAccent,
+                    borderRadius: BorderRadius.all(Radius.circular(12))),
+                child: Text(
+                  submit,
+                  style: TextStyle(
+                      color: Colors.white, fontSize: size.width * 0.05),
+                ),
+              ))
         ],
       ),
     );

@@ -141,13 +141,23 @@ class confirmBooking extends StatelessWidget {
   }
 }
 
-class bottomSheet extends StatelessWidget {
+class bottomSheet extends StatefulWidget {
   int no;
   int carPrice;
   String selectedCar;
+
   bottomSheet({this.no,this.carPrice,this.selectedCar});
+
+  @override
+  _bottomSheetState createState() => _bottomSheetState();
+}
+
+class _bottomSheetState extends State<bottomSheet> {
+
+
   @override
   Widget build(BuildContext context) {
+    String submit = "Check Out";
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
@@ -180,7 +190,7 @@ class bottomSheet extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
-                    "$currency ${(isForced)?75:carPrice}",
+                    "$currency ${(isForced)?75:widget.carPrice}",
                     style: TextStyle(
                         fontSize: size.width * 0.05,
                         fontWeight: FontWeight.w700),
@@ -195,7 +205,10 @@ class bottomSheet extends StatelessWidget {
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
                   noti.sendNoti((isForced)?forcedFromField:fromField,
-                      (isForced)?forcedToField:toField, (isForced)?forcedCarField:selectedCar,"Car Trip");
+                      (isForced)?forcedToField:toField, (isForced)?forcedCarField:widget.selectedCar,"Car Trip");
+                  setState(() {
+                    submit = "✔";
+                  });
                 },
                 child: Container(
                   width: size.width * 0.32,
@@ -205,7 +218,7 @@ class bottomSheet extends StatelessWidget {
                       color: Colors.deepPurpleAccent,
                       borderRadius: BorderRadius.all(Radius.circular(12))),
                   child: Text(
-                    "Check Out",
+                    "$submit",
                     style: TextStyle(
                         color: Colors.white, fontSize: size.width * 0.05),
                   ),

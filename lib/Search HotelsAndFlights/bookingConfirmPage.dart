@@ -151,12 +151,20 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
 
 
 
-class bottomSheet extends StatelessWidget {
-  Duration nights = endDate.difference(startDate);
+class bottomSheet extends StatefulWidget {
   int hotelNo,flightNo;
   bottomSheet({this.flightNo,this.hotelNo});
+
+  @override
+  _bottomSheetState createState() => _bottomSheetState();
+}
+
+class _bottomSheetState extends State<bottomSheet> {
+  Duration nights = endDate.difference(startDate);
+
   @override
   Widget build(BuildContext context) {
+    String submit = "Check Out";
     Size size = MediaQuery.of(context).size;
     int totalPrice = ((nights.inDays*selectedHotelPrice)+selectedFlightPrice+((isForced)?75:0));
     //print(totalPrice);
@@ -206,7 +214,10 @@ class bottomSheet extends StatelessWidget {
                 onPressed: () {
                   sendingNoti noti = sendingNoti();
                   noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?(forcedFlightField+"  "+forcedHotelField):(selectedAirline+"  "+selectedHotel),"Flight & Stay");
-                },
+                  setState(() {
+                    submit = "✔";
+                  });
+                  },
                 child: Container(
                   width: size.width * 0.32,
                   height: size.height * 0.09,
@@ -215,7 +226,7 @@ class bottomSheet extends StatelessWidget {
                       color: Colors.deepPurpleAccent,
                       borderRadius: BorderRadius.all(Radius.circular(12))),
                   child: Text(
-                    "Check Out",
+                    "$submit",
                     style: TextStyle(
                         color: Colors.white, fontSize: size.width * 0.05),
                   ),
