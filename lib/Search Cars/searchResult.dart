@@ -8,7 +8,7 @@ import 'package:virtual_destination/Search%20Cars/resultCarCont.dart';
 import 'package:virtual_destination/home page/settings.dart';
 import 'package:virtual_destination/Perform/searchFlights.dart';
 
-List<int> carPrices = <int>[35,45,200,125,220,49,185,199,25,55];
+List<int> carPrices = <int>[35,45,200,125,220,49,185,25,199,55];
 
 class resultPage extends StatefulWidget {
   @override
@@ -132,9 +132,9 @@ class travelInfoContainer extends StatelessWidget {
     return Container(
       width: size.width*0.9,
       height: size.height*0.2,
-      decoration: BoxDecoration(color: Color(0xFFbc6ff1),
+      decoration: BoxDecoration(color: Colors.white,
       boxShadow: <BoxShadow>[
-        BoxShadow(color: Colors.black.withOpacity(0.15),
+        BoxShadow(color: Colors.black.withOpacity(0.35),
         blurRadius: 10,spreadRadius: 6)
       ],
       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -159,16 +159,16 @@ class travelInfoContainer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("$fromField",style: TextStyle(
-                   color: Colors.white,
+                   color: Colors.black87,
                    fontSize: size.width*0.04
                   ),),
                   Text("${startDate.toString().substring(0,10)}",style: TextStyle(
-                    color: Colors.white
+                    color: Colors.black87
                   ),)
                 ], 
                ),
               ),
-              Icon(Icons.swap_horiz_outlined,color: Colors.white,size: size.width*0.1,),
+              Icon(Icons.swap_horiz_outlined,color: Colors.black87,size: size.width*0.1,),
               Container(
                color: Colors.transparent,
                width: size.width*0.35,
@@ -177,11 +177,11 @@ class travelInfoContainer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("$toField",style: TextStyle(
-                   color: Colors.white,
+                   color: Colors.black87,
                    fontSize: size.width*0.04
                   ),),
                   Text("${endDate.toString().substring(0,10)}",style: TextStyle(
-                    color: Colors.white
+                    color: Colors.black87
                   ),)
                 ], 
                ),
@@ -191,20 +191,21 @@ class travelInfoContainer extends StatelessWidget {
          ),
          Container(
           height: size.height*0.055,
-          width: size.width*0.5,
+          width: size.width*0.7,
+          margin: EdgeInsets.only(left: size.width*0.08),
           child: Row(
            crossAxisAlignment: CrossAxisAlignment.center,
-           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: [
              Column(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
                  Text("Pick Up Time:",style: TextStyle(
                    fontSize: size.width*0.03,
-                   color: Colors.white
+                   color: Colors.black87
                  ),),
                  Text("${startDate.toString().substring(11,startDate.toString().length-7)}",style: TextStyle(
-                   color: Colors.white,
+                   color: Colors.black87,
                    fontSize: size.width*0.048,
                    fontWeight: FontWeight.w500
                  ),),
@@ -213,7 +214,7 @@ class travelInfoContainer extends StatelessWidget {
              Padding(
                padding: EdgeInsets.only(top:size.height*0.02),
                child: Text(" - ",style: TextStyle(
-                     color: Colors.white,
+                     color: Colors.black87,
                      fontSize: size.width*0.048,
                      fontWeight: FontWeight.w500
                ),),
@@ -223,10 +224,10 @@ class travelInfoContainer extends StatelessWidget {
                children: [
                  Text("Drop Off Time:",style: TextStyle(
                    fontSize: size.width*0.03,
-                   color: Colors.white
+                   color: Colors.black87
                  ),),
                  Text("${endDate.toString().substring(11,startDate.toString().length-7)}",style: TextStyle(
-                   color: Colors.white,
+                   color: Colors.black87,
                    fontSize: size.width*0.048,
                    fontWeight: FontWeight.w500
                  ),),

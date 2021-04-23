@@ -141,9 +141,9 @@ class travelInfoContainer extends StatelessWidget {
     return Container(
       width: size.width*0.9,
       height: size.height*0.2,
-      decoration: BoxDecoration(color: Color(0xFFbc6ff1),
+      decoration: BoxDecoration(color: Colors.white,
       boxShadow: <BoxShadow>[
-        BoxShadow(color: Colors.black.withOpacity(0.15),
+        BoxShadow(color: Colors.black.withOpacity(0.35),
         blurRadius: 10,spreadRadius: 6)
       ],
       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -168,22 +168,22 @@ class travelInfoContainer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("$fromField",style: TextStyle(
-                   color: Colors.white,
+                   color: Colors.black87,
                    fontSize: size.width*0.04
                   ),),
                   Padding(
                     padding: EdgeInsets.only(top:5.0,bottom: 4),
                     child: Text("Departure",style: TextStyle(
-                     color: Colors.white 
+                     color: Colors.black87
                     ),),
                   ),
                   Text("${startDate.toString().substring(0,10)}",style: TextStyle(
-                    color: Colors.white
+                    color: Colors.black87
                   ),)
                 ], 
                ),
               ),
-              Icon(Icons.swap_horiz_outlined,color: Colors.white,size: size.width*0.1,),
+              Icon(Icons.swap_horiz_outlined,color: Colors.black87,size: size.width*0.1,),
               Container(
                color: Colors.transparent,
                width: size.width*0.35,
@@ -192,17 +192,17 @@ class travelInfoContainer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("$toField",style: TextStyle(
-                   color: Colors.white,
+                   color: Colors.black87,
                    fontSize: size.width*0.04
                   ),),
                   Padding(
                     padding: EdgeInsets.only(top:5.0,bottom: 4),
                     child: Text("Returning",style: TextStyle(
-                     color: Colors.white 
+                     color: Colors.black87
                     ),),
                   ),
                   Text("${endDate.toString().substring(0,10)}",style: TextStyle(
-                    color: Colors.white
+                    color: Colors.black87
                   ),)
                 ], 
                ),
@@ -218,12 +218,12 @@ class travelInfoContainer extends StatelessWidget {
            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: [
              Text("$adults Adults",style: TextStyle(
-               color: Colors.white,
+               color: Colors.black87,
                fontSize: size.width*0.048,
                fontWeight: FontWeight.w500
              ),),
              Text("$children Children",style: TextStyle(
-               color: Colors.white,
+               color: Colors.black87,
                fontSize: size.width*0.048,
                fontWeight: FontWeight.w500
              ),),

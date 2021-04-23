@@ -64,7 +64,7 @@ class _confirmBookingState extends State<confirmBooking> {
       ),
       body: ListView(
         children: [
-          Container(
+          (isForced)?Text(""):Container(
             height: size.height * 0.3,
             width: size.width,
             decoration: BoxDecoration(color: Colors.white),
@@ -186,7 +186,7 @@ class _confirmBookingState extends State<confirmBooking> {
                     height: size.height * 0.09,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: Colors.deepPurpleAccent,
+                        color: Colors.green,
                         borderRadius: BorderRadius.all(Radius.circular(12))),
                     child: Text(
                       "$submit",

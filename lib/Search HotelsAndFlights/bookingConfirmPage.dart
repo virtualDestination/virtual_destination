@@ -192,7 +192,7 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
               child: TextButton(
                   onPressed: () {
                     sendingNoti noti = sendingNoti();
-                    //noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?(forcedFlightField+"  "+forcedHotelField):(selectedAirline+"  "+selectedHotel),"Flight & Stay");
+                    noti.sendNoti((isForced)?forcedFromField:fromField, (isForced)?forcedToField:toField, (isForced)?(forcedFlightField+"  "+forcedHotelField):(selectedAirline+"  "+selectedHotel),"Flight & Stay");
                     setState(() {
                       submit = "✔";
                     });
@@ -202,7 +202,7 @@ class _flight_and_hotels_booking_confirmState extends State<flight_and_hotels_bo
                     height: size.height * 0.09,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: Colors.deepPurpleAccent,
+                        color: Colors.green,
                         borderRadius: BorderRadius.all(Radius.circular(12))),
                     child: Text(
                       "$submit",

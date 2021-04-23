@@ -49,7 +49,7 @@ class carContainer extends StatelessWidget {
            children: [
              Padding(
                padding: const EdgeInsets.all(9.0),
-               child: Text("${(isPreloaded)?cars[no-1]:name}",style: TextStyle(
+               child: Text("${(name==null)?cars[no-1]:name}",style: TextStyle(
                  fontSize: size.width*0.045,
                  fontWeight: FontWeight.bold
                ),),

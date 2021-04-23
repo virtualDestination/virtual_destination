@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,6 +65,66 @@ class _MyAppState extends State<MyApp> {
     return isPerformMode;
   }
 
+  Future<void> getImages() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    if(sharedPreferences.getString('bottomImage1')!=null){
+      bottomImage1 = File(sharedPreferences.getString('bottomImage1'));
+    }
+
+    if(sharedPreferences.getString("bottomImage2")!=null){
+      bottomImage2 = File(sharedPreferences.getString('bottomImage2'));
+    }
+
+    if(sharedPreferences.getString('bottomImage3')!=null){
+      bottomImage3 = File(sharedPreferences.getString('bottomImage3'));
+    }
+
+    if(sharedPreferences.getString("imageFile")!=null){
+      imageFile = File(sharedPreferences.getString("imageFile"));
+    }
+  }
+
+  Future<void> getVariables() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    if(sharedPreferences.getBool('force')!=null){
+      isForced = sharedPreferences.getBool('force');
+    }else{
+      isForced = false;
+    }
+
+    if(sharedPreferences.getBool('preloaded')!=null){
+      isPreloaded = sharedPreferences.getBool('preloaded');
+    }else{
+      isPreloaded = false;
+    }
+
+    if(sharedPreferences.getInt('countdown')!=null){
+      countdown = sharedPreferences.getInt('countdown');
+    }else{
+      countdown = 10;
+    }
+
+    if(sharedPreferences.getString('currency')!=null){
+      currency = sharedPreferences.getString('currency');
+    }else{
+      currency = "\$";
+    }
+
+    if(sharedPreferences.getBool('performance')!=null){
+      isPerformance = sharedPreferences.getBool('performance');
+    }else{
+      isPerformance = false;
+    }
+
+    if(sharedPreferences.getString('url')!=null){
+      addressUrl = sharedPreferences.getString('url');
+    }else{
+      addressUrl = "www.wholesale.com";
+    }
+  }
+
   Future<void> performanceMode(bool isPerform) async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -76,6 +138,8 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     this.initDynamicLinks();
+    getVariables();
+    getImages();
   }
 
 

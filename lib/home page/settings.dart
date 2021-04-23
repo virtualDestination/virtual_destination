@@ -1,20 +1,16 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:image_picker/image_picker.dart';
-import 'package:virtual_destination/colors.dart';
 import 'package:virtual_destination/home%20page/rounded_input_field.dart';
 
-String addressUrl = "www.wholesale.com";
-String currency = "\$";
+String addressUrl;
+String currency;
 File imageFile,bottomImage1,bottomImage2,bottomImage3;
-bool isForced = false;
-int countdown = 10;
-bool isPerformance = false;
-bool isPreloaded = false;
+bool isForced;
+int countdown;
+bool isPerformance;
+bool isPreloaded;
 
 class settings extends StatefulWidget {
   @override
@@ -25,6 +21,12 @@ class _settingsState extends State<settings> {
   String changeCurrency;
   String changeUrl;
 
+  Future<void> setForce(bool isForceMode) async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      sharedPreferences.setBool('force', isForceMode);
+    });
+  }
 
   Future<void> performanceMode(bool isPerform) async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -35,18 +37,22 @@ class _settingsState extends State<settings> {
 
   Future<void> pickImage() async{
     FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.any);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     if(result != null) {
       imageFile = File(result.files.single.path);
+      sharedPreferences.setString('imageFile', imageFile.path);
     } else {
       // User canceled the picker
     }
   }
   Future<void> pickImage1() async{
     FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.any);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     if(result != null) {
       bottomImage1 = File(result.files.single.path);
+      sharedPreferences.setString('bottomImage1', bottomImage1.path);
     } else {
       // User canceled the picker
     }
@@ -54,9 +60,11 @@ class _settingsState extends State<settings> {
 
   Future<void> pickImage2() async{
     FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.any);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     if(result != null) {
       bottomImage2 = File(result.files.single.path);
+      sharedPreferences.setString('bottomImage2', bottomImage2.path);
     } else {
       // User canceled the picker
     }
@@ -64,9 +72,11 @@ class _settingsState extends State<settings> {
 
   Future<void> pickImage3() async{
     FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.any);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     if(result != null) {
       bottomImage3 = File(result.files.single.path);
+      sharedPreferences.setString('bottomImage3', bottomImage3.path);
     } else {
       // User canceled the picker
     }
@@ -79,6 +89,30 @@ class _settingsState extends State<settings> {
     }else{
       isPerformance = sharedPreferences.getBool('performance');
     }
+  }
+
+  Future<void> setCurrency() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('currency', changeCurrency);
+  }
+
+  Future<void> setUrl() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('url', changeUrl);
+  }
+
+  Future<void> setPreloaded(bool isPreload) async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      sharedPreferences.setBool('preloaded', isPreload);
+    });
+  }
+
+  Future<void> setCountdown(int time) async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      sharedPreferences.setInt('countdown', time);
+    });
   }
 
   @override
@@ -126,6 +160,7 @@ class _settingsState extends State<settings> {
                           ),),
                         Switch(value: isForced, onChanged: (val){
                           setState(() {
+                            setForce(val);
                             if(val){
                               isForced = true;
                             }else{
@@ -133,7 +168,7 @@ class _settingsState extends State<settings> {
                             }
                           });
                         },
-                          activeColor: Colors.black87,)
+                        activeColor: Colors.black87,)
                       ],
                     )),
                 Container(
@@ -152,8 +187,10 @@ class _settingsState extends State<settings> {
                           setState(() {
                             if(val){
                               isPreloaded = true;
+                              setPreloaded(val);
                             }else{
                               isPreloaded = false;
+                              setPreloaded(val);
                             }
                           });
                         },
@@ -217,6 +254,7 @@ class _settingsState extends State<settings> {
                             actions: [
                               TextButton(onPressed: (){
                                 setState(() {
+                                  setUrl();
                                   addressUrl = changeUrl;
                                 });
                                 Navigator.pop(context);
@@ -269,6 +307,7 @@ class _settingsState extends State<settings> {
                             actions: [
                               TextButton(onPressed: (){
                                 setState(() {
+                                  setCurrency();
                                   currency = changeCurrency;
                                 });
                                 Navigator.pop(context);
@@ -309,6 +348,7 @@ class _settingsState extends State<settings> {
                                   hintText: "countdown",
                                   onChanged: (url){
                                     setState(() {
+                                      setCountdown(int.parse(url));
                                       countdown = int.parse(url);
                                     });
                                   },

@@ -167,7 +167,7 @@ class _confirmBookingState extends State<confirmBooking> {
                   height: size.height * 0.09,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: Colors.purpleAccent,
+                      color: Colors.green,
                       borderRadius: BorderRadius.all(Radius.circular(12))),
                   child: Text(
                     submit,

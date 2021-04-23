@@ -133,9 +133,9 @@ class travelInfoContainer extends StatelessWidget {
     return Container(
       width: size.width*0.9,
       height: size.height*0.2,
-      decoration: BoxDecoration(color: Color(0xFFbc6ff1),
+      decoration: BoxDecoration(color: Colors.white,
       boxShadow: <BoxShadow>[
-        BoxShadow(color: Colors.black.withOpacity(0.15),
+        BoxShadow(color: Colors.black.withOpacity(0.35),
         blurRadius: 10,spreadRadius: 6)
       ],
       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -152,7 +152,7 @@ class travelInfoContainer extends StatelessWidget {
             color: Colors.transparent,
             width: size.width*0.35,
             child: Text("$toField",style: TextStyle(
-             color: Colors.white,
+             color: Colors.black87,
              fontSize: size.width*0.059,
              fontWeight: FontWeight.w700
             ),),
@@ -166,22 +166,22 @@ class travelInfoContainer extends StatelessWidget {
            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: [
              Text("$nights Nights",style: TextStyle(
-               color: Colors.white,
+               color: Colors.black87,
                fontSize: size.width*0.048,
                fontWeight: FontWeight.w500
              ),),
              Text("$rooms Rooms",style: TextStyle(
-               color: Colors.white,
+               color: Colors.black87,
                fontSize: size.width*0.048,
                fontWeight: FontWeight.w500
              ),),
              Text("$adults Adults",style: TextStyle(
-               color: Colors.white,
+               color: Colors.black87,
                fontSize: size.width*0.048,
                fontWeight: FontWeight.w500
              ),),
              Text("$children Children",style: TextStyle(
-               color: Colors.white,
+               color: Colors.black87,
                fontSize: size.width*0.048,
                fontWeight: FontWeight.w500
              ),),
@@ -197,7 +197,7 @@ class travelInfoContainer extends StatelessWidget {
          Padding(
            padding: const EdgeInsets.all(8.0),
            child: Text("${startDate.toString().substring(11,endDate.toString().length-4)}",style: TextStyle(
-             color: Colors.white
+             color: Colors.black87
            ),),
          )
        ],
