@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:virtual_destination/Customize/forcedMode.dart';
 import 'package:virtual_destination/Notifications/push_notification_service.dart';
 import 'package:virtual_destination/Perform/searchFlights.dart';
+import 'package:virtual_destination/Perform/searchHotels.dart';
 import 'package:virtual_destination/Search%20Hotels/resultHotelsContainer.dart';
 import 'package:virtual_destination/home%20page/settings.dart';
 import 'package:virtual_destination/main.dart';
@@ -80,6 +81,7 @@ class _confirmBookingState extends State<confirmBooking> {
               fontWeight: FontWeight.w700
             ),),
           ),
+          travelInfoContainer(nights: endDate.difference(startDate).inDays,),
           Padding(
             padding: EdgeInsets.all(size.width*0.04),
             child: Text("${widget.stars}",style: TextStyle(
@@ -202,21 +204,94 @@ class _confirmBookingState extends State<confirmBooking> {
   }
 }
 
-// class bottomSheet extends StatefulWidget {
-//   int no,price;
-//   String name;
-//   bottomSheet({this.no,this.price,this.name});
-//
-//   @override
-//   _bottomSheetState createState() => _bottomSheetState();
-// }
-//
-// class _bottomSheetState extends State<bottomSheet> {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     String submit = "Check Out";
-//     Size size = MediaQuery.of(context).size;
-//     return ;
-//   }
-// }
+class travelInfoContainer extends StatelessWidget {
+  int nights;
+  travelInfoContainer({this.nights});
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      width: size.width*0.9,
+      height: size.height*0.25,
+      decoration: BoxDecoration(color: Colors.white,
+          // boxShadow: <BoxShadow>[
+          //   BoxShadow(color: Colors.black.withOpacity(0.35),
+          //       blurRadius: 10,spreadRadius: 6)
+          // ],
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 6),
+      margin: EdgeInsets.symmetric(horizontal: size.width*0.025,vertical: size.height*0.01),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: size.height*0.05,
+            width: size.width*1,
+            child: Container(
+              color: Colors.transparent,
+              width: size.width*0.35,
+              child: Text("${(isForced)?forcedToField:toField}",style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: size.width*0.059,
+                  fontWeight: FontWeight.w700
+              ),),
+            ),
+          ),
+          Container(
+            height: size.height*0.03,
+            width: size.width*1,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("$nights Nights",style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: size.width*0.048,
+                    fontWeight: FontWeight.w500
+                ),),
+                Text("$rooms Rooms",style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: size.width*0.048,
+                    fontWeight: FontWeight.w500
+                ),),
+              ],
+            ),
+          ),
+          Container(
+            height: size.height*0.03,
+            width: size.width*1,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("$adults Adults",style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: size.width*0.048,
+                    fontWeight: FontWeight.w500
+                ),),
+                Text("$children Children",style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: size.width*0.048,
+                    fontWeight: FontWeight.w500
+                ),),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top:size.height*0.023),
+            child: Text("Check In Time",style: TextStyle(
+                color: Colors.black87.withOpacity(0.7)
+            ),),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("${startDate.toString().substring(11,endDate.toString().length-10)}",style: TextStyle(
+                color: Colors.black87
+            ),),
+          )
+        ],
+      ),
+    );
+  }
+}

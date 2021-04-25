@@ -8,7 +8,7 @@ import 'package:virtual_destination/Search%20Cars/resultCarCont.dart';
 import 'package:virtual_destination/home page/settings.dart';
 import 'package:virtual_destination/Perform/searchFlights.dart';
 
-List<int> carPrices = <int>[35,45,200,125,220,49,185,25,199,55];
+List<int> carPrices = <int>[35,200,45,125,220,49,185,25,199,55];
 
 class resultPage extends StatefulWidget {
   @override

@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:virtual_destination/Customize/forcedMode.dart';
 import 'package:virtual_destination/Network/cities.dart';
 import 'package:virtual_destination/Notifications/push_notification_service.dart';
 import 'package:virtual_destination/Perform/travelHomePage.dart';
@@ -58,6 +59,40 @@ class _MyAppState extends State<MyApp> {
   //   bool isLoggedIn = sharedPreferences.getBool('logIn');
   //   return isLoggedIn;
   // }
+
+  Future<void> getForcedVariables() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    if(sharedPreferences.getString('forcedFromField')!=null){
+      forcedFromField = sharedPreferences.getString('forcedFromField');
+    }else{
+      forcedFromField = null;
+    }
+
+    if(sharedPreferences.getString('forcedToField')!=null){
+      forcedToField =  sharedPreferences.getString('forcedToField');
+    }else{
+      forcedToField =  null;
+    }
+
+    if(sharedPreferences.getString('forcedFlightField')!=null){
+      forcedFlightField = sharedPreferences.getString('forcedFlightField');
+    }else{
+      forcedFlightField = null;
+    }
+
+    if(sharedPreferences.getString('forcedHotelField')!=null){
+      forcedHotelField = sharedPreferences.getString('forcedHotelField');
+    }else{
+      forcedHotelField = null;
+    }
+
+    if(sharedPreferences.getString('forcedCarField')!=null){
+      forcedCarField = sharedPreferences.getString('forcedCarField');
+    }else{
+      forcedCarField = null;
+    }
+  }
 
   Future<bool> isPerformanceMode() async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -140,6 +175,7 @@ class _MyAppState extends State<MyApp> {
     this.initDynamicLinks();
     getVariables();
     getImages();
+    getForcedVariables();
   }
 
 

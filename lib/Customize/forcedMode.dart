@@ -1,6 +1,7 @@
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:virtual_destination/Customize/rounded_button.dart';
 import 'package:virtual_destination/Customize/rounded_input_field.dart';
 import 'package:virtual_destination/Search%20Cars/resultCarCont.dart';
@@ -26,6 +27,40 @@ class _forceModeState extends State<forceMode> with SingleTickerProviderStateMix
   GlobalKey<AutoCompleteTextFieldState<String>> carKey = new GlobalKey();
   GlobalKey<AutoCompleteTextFieldState<String>> flightKey = new GlobalKey();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Future<void> saveForcedVariables() async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    if(forcedFromField!=null){
+      sharedPreferences.setString('forcedFromField', forcedFromField);
+    }else{
+      sharedPreferences.setString('forcedFromField', null);
+    }
+
+    if(forcedToField!=null){
+      sharedPreferences.setString('forcedToField', forcedToField);
+    }else{
+      sharedPreferences.setString('forcedToField', null);
+    }
+
+    if(forcedFlightField!=null){
+      sharedPreferences.setString('forcedFlightField', forcedFlightField);
+    }else{
+      sharedPreferences.setString('forcedFlightField', null);
+    }
+
+    if(forcedHotelField!=null){
+      sharedPreferences.setString('forcedHotelField', forcedHotelField);
+    }else{
+      sharedPreferences.setString('forcedHotelField', null);
+    }
+
+    if(forcedCarField!=null){
+      sharedPreferences.setString('forcedCarField', forcedCarField);
+    }else{
+      sharedPreferences.setString('forcedCarField', null);
+    }
+  }
 
   @override
   void initState() {
@@ -124,6 +159,7 @@ class _forceModeState extends State<forceMode> with SingleTickerProviderStateMix
                     text: "Submit",
                     color: Colors.green,
                     press: () {
+                      saveForcedVariables();
                       Navigator.pop(context);
                       print(forcedFromField+forcedToField+forcedHotelField+forcedCarField+forcedFlightField);
                     },
