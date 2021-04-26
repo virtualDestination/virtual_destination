@@ -6,6 +6,15 @@ class carCont extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextStyle normalText = TextStyle(
+      color: Colors.black54,
+      fontSize: size.width*0.045,
+    );
+    TextStyle highlightedText = TextStyle(
+        color: Colors.black87,
+        fontSize: size.width*0.053,
+        fontWeight: FontWeight.w700
+    );
     return Container(
       height: size.height * 0.5,
       width: size.width,
@@ -20,60 +29,42 @@ class carCont extends StatelessWidget {
             padding: const EdgeInsets.all(4.0),
             child: Text(
               "Car Selected ",
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: size.width * 0.045,
-              ),
+              style: normalText,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
               "$forcedCarField",
-              style: TextStyle(
-                color: Colors.black87,
-                fontSize: size.width * 0.045,
-              ),
+              style: highlightedText,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
               "Pick-Up Time ",
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: size.width * 0.045,
-              ),
+              style: normalText,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
-              "${startDate.toString().substring(11,startDate.toString().length-7)}",
-              style: TextStyle(
-                color: Colors.black87,
-                fontSize: size.width * 0.045,
-              ),
+              "3:00 P.M.",
+              style: highlightedText,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
               "Drop-Off Time ",
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: size.width * 0.045,
-              ),
+              style: normalText,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
-              "${endDate.toString().substring(11,endDate.toString().length-7)}",
-              style: TextStyle(
-                color: Colors.black87,
-                fontSize: size.width * 0.045,
-              ),
+              "12:00 P.M.",
+              style: highlightedText,
             ),
           ),
         ],

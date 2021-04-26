@@ -45,7 +45,7 @@ class hotel_booking_confirm extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Text("${startDate.toString().substring(11,startDate.toString().length-7)}",style: highlightedText,),
+            child: Text("14:00 P.M.",style: highlightedText,),
           ),
           Padding(
             padding: const EdgeInsets.all(3.0),
