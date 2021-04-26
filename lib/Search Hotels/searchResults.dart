@@ -191,12 +191,12 @@ class travelInfoContainer extends StatelessWidget {
          Padding(
            padding: const EdgeInsets.all(8.0),
            child: Text("Check In Time",style: TextStyle(
-             color: Colors.white.withOpacity(0.7)
+             color: Colors.black87.withOpacity(0.7)
            ),),
          ),
          Padding(
            padding: const EdgeInsets.all(8.0),
-           child: Text("${startDate.toString().substring(11,endDate.toString().length-4)}",style: TextStyle(
+           child: Text("14:00",style: TextStyle(
              color: Colors.black87
            ),),
          )

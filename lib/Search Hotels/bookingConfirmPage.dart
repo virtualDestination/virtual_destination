@@ -286,7 +286,7 @@ class travelInfoContainer extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("${startDate.toString().substring(11,endDate.toString().length-10)}",style: TextStyle(
+            child: Text("14:00",style: TextStyle(
                 color: Colors.black87
             ),),
           )

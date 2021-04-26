@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:virtual_destination/Customize/airlinesList.dart';
 import 'package:virtual_destination/Search%20Flights/bookingConfirmPage.dart';
 import 'package:virtual_destination/home page/settings.dart';
 import 'package:virtual_destination/randomTimeGenerator.dart';
@@ -9,7 +8,7 @@ import 'package:virtual_destination/randomTimeGenerator.dart';
 List<int> flightsPrices = <int>[459,450,599,386,349,375,425,549,559,649];
 
 List<String> airlines = <String>[
-    "American Airlines","British Airlines","Delta Airlines",
+    "American Airlines","British Airways","Delta Airlines",
     "RyanAir","Fly Emirates","Etihad Airways",
     "EasyJet","Lufthansa"
   ];
