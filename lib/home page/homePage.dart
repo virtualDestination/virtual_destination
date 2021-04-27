@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:virtual_destination/Customize/mainCustomPage.dart';
 import 'package:virtual_destination/Perform/travelHomePage.dart';
@@ -20,11 +21,11 @@ class _homePageState extends State<homePage> {
   String _url = "https://www.facebook.com/groups/315564823431585/";
 
 
-  // void logOut(bool value) async{
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   sharedPreferences.setBool('logIn', value);
-  //   print("Succesfully Logged Out");
-  // }
+  void logOut(bool value) async{
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setBool('logIn', value);
+    print("Succesfully Logged Out");
+  }
 
   void _launchURL(String url) async =>
       await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
@@ -114,6 +115,9 @@ class _homePageState extends State<homePage> {
                 });
               }),
               FocusedMenuItem(title: Text("Read Instruction"), onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Material(child: pdfViewer())));}),
+              FocusedMenuItem(title: Text("Log Out"), onPressed: (){setState(() {
+                logOut(true);
+              });})
             ],),
           actions: [
             IconButton(icon: Icon(Icons.settings), onPressed: (){

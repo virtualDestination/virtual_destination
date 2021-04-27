@@ -54,11 +54,11 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  // Future<bool> isLogedIn() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   bool isLoggedIn = sharedPreferences.getBool('logIn');
-  //   return isLoggedIn;
-  // }
+  Future<bool> isLogedIn() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    bool isLoggedIn = sharedPreferences.getBool('logIn');
+    return isLoggedIn;
+  }
 
   Future<void> getForcedVariables() async{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -217,18 +217,30 @@ class _MyAppState extends State<MyApp> {
       ),
       // home: MyHomePage(title: "OK",),
       home: FutureBuilder<bool>(
-          future: isPerformanceMode(),
+          future: isLogedIn(),
           builder: (context,snapshot){
-            if(snapshot.hasData){
-              if(snapshot.data==true){
-                return performHome();
-              }else{
-                return homePage();
-              }
-            }else{
-              return homePage();
-            }
-          }),
+        if(snapshot.hasData){
+          if(snapshot.data == true){
+            return FutureBuilder<bool>(
+                future: isPerformanceMode(),
+                builder: (context,snapshot){
+                  if(snapshot.hasData){
+                    if(snapshot.data==true){
+                      return performHome();
+                    }else{
+                      return homePage();
+                    }
+                  }else{
+                    return homePage();
+                  }
+                });
+          }else{
+            return SignIn();
+          }
+        }else{
+          return CircularProgressIndicator();
+        }
+      }),
     );
   }
 }
