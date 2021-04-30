@@ -238,7 +238,7 @@ class _MyAppState extends State<MyApp> {
             return SignIn();
           }
         }else{
-          return CircularProgressIndicator();
+          return SignIn();
         }
       }),
     );
